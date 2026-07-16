@@ -3,28 +3,38 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" concent="width=device-width, initial-scale=1.0">
-        <title>Film Sitemize hoşgeldiniz</title>
+        <title>Film Sitesi</title>
         <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
         <header>
-            <a href="index.html" class="logo">Film Sitesi</a>
-            <input type="text" placeholder="Film ara.." id="arama">
-            <a href= "#" class="account-link">Hesap</a>
+            <div class="header-left">
+                <h1 class="logo">Film Sitesi</h1>
+            </div>
+
+            <nav>
+                <a href="index.html">Ana Sayfa</a>
+                <a href="#">Katagoriler</a>
+                <a href="#">Diziler</a>
+                <a href="#">Filmler</a>
+            </nav>
+            <div class="header-right">
+                <input type="text" placeholder="Film, dizi ara.." id="arama">
+                <a href= "#" class="account-link">Hesap</a>
+            </div>
         </header>
 
         <main>
             <section class="latest-movies">
                 <div class="latest-movies-header">
                 <h2>En Yeni Filmler</h2>
-                <button class="next-btn">></button>
                 </div>
                 <div class ="latest-movie-cards">
                     <article class="latest-movie-card">
                         <img src="">
                         <div class="latest-movie-info">
-                        <h3> Film 1</h3>
+                        <h3 class="movie-title">Film 1</h3>
                         <p>hakkında..</p>
                         <button class="watch-btn">İzle</button>
                         </div>
@@ -32,7 +42,7 @@
                     <article class="latest-movie-card">
                         <img src="">
                         <div class="latest-movie-info">
-                        <h3> Film 2</h3>
+                        <h3 class="movie-title">Film 2</h3>
                         <p>hakkında..</p>
                         <button class="watch-btn">İzle</button>
                         </div>
@@ -40,7 +50,7 @@
                     <article class="latest-movie-card">
                         <img src="">
                         <div class="latest-movie-info">
-                        <h3> Film 3</h3>
+                        <h3 class="movie-title">Film 3</h3>
                         <p>hakkında..</p>
                         <button class="watch-btn">İzle</button>
                         </div>
@@ -118,6 +128,7 @@
             </section>
 
         </main>
+        <script src="script.js"></script>
     </body>
     <footer>
         <p>&copy; 2026 FİLM SİTESİ - TÜM HAKLARI SAKLIDIR.</p>
