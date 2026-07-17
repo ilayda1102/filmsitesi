@@ -18,7 +18,7 @@ header{
     align-items: center;
     padding: 20px 40px;
     background-color: #252525;
-    border-bottom: 2px solid #0af3c0;
+    border-bottom: 2px solid white;
 }
 .header-left{
     width: 220px;
@@ -39,7 +39,7 @@ header{
     cursor: pointer;
 }
 .logo:hover{
-    color: #0af3c0;
+    color: #922323;
 }
 input{
     width: 350px;
@@ -62,7 +62,7 @@ nav a{
     transition: .3s;
 }
 nav a:hover{
-    color: #0af3c0;
+    color: #922323;
 }
 .account-link{
     color: white;
@@ -71,8 +71,59 @@ nav a:hover{
     font-weight: bold;
 }
 header a:hover{
-    color: #0af3c0;
+    color: #922323;
 }
+
+/*================
+      DROPDOWN
+=================*/
+.dropdown {
+    position: relative;
+}
+.dropdown-menu {
+    display: none;
+}
+.dropdown:hover .dropdown-menu {
+    display: grid;
+}
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    width: 550px;
+
+    background: #252525;
+    border: 2px solid white;
+    border-radius: 12px;
+
+    padding: 15px;
+    column-gap: 25px;
+    row-gap: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .4);
+    grid-template-columns: repeat(3, 1fr);
+    z-index: 999;
+}
+.dropdown-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 8px;
+    transition: .03;
+}
+.dropdown-menu a:hover {
+    background: white;
+    color: #252525;
+}
+
+
+
+
+
+
+
+
 
 /*================
       MODAL
