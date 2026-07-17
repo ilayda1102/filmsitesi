@@ -47,3 +47,34 @@ window.addEventListener("click",function(e) {
         modal.style.display="none";
     }
 });
+
+/*================
+     KATEGORİ
+=================*/
+const params = new URLSearchParams(window.location.search);
+const tur = params.get("tur");
+
+const kategoriBaslik = document.getElementById("kategoriBaslik");
+const kategoriAdlari = {
+    "aksiyon":"Aksiyon",
+    "aksiyon": "Aksiyon",
+    "aile": "Aile",
+    "animasyon": "Animasyon",
+    "belgesel": "Belgesel",
+    "biyografi": "Biyografi",
+    "bilim-kurgu": "Bilim Kurgu",
+    "cocuk": "Çocuk",
+    "dram": "Dram",
+    "fantastik": "Fantastik",
+    "gerilim": "Gerilim",
+    "komedi": "Komedi",
+    "korku": "Korku",
+    "muzikal": "Müzikal",
+    "polisiye": "Polisiye",
+    "romantik": "Romantik",
+    "romantik-komedi": "Romantik Komedi",
+    "suc": "Suç"
+};
+if (tur && kategoriBaslik) {
+    kategoriBaslik.textContent = kategoriAdlari[tur];
+}
