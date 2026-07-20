@@ -1,3 +1,6 @@
+/*================
+     ARAMA
+=================*/
 const arama = document.getElementById("arama");
 arama.addEventListener("keyup", function() {
     const aranan = arama.value.toLowerCase();
@@ -78,3 +81,17 @@ const kategoriAdlari = {
 if (tur && kategoriBaslik) {
     kategoriBaslik.textContent = kategoriAdlari[tur];
 }
+
+/*================
+     KATEGORİ
+=================*/
+
+const header = document.querySelector(".header");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+    } else {
+        header.classList.remove("scrolled");
+    }
+});
