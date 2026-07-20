@@ -1,9 +1,9 @@
 const arama = document.getElementById("arama");
 arama.addEventListener("keyup", function() {
     const aranan = arama.value.toLowerCase();
-    const kartlar = document.querySelectorAll(".latest-movie-card");
+    const kartlar = document.querySelectorAll(".movie-card");
      kartlar.forEach(function(kart) {
-        const isim = kart.querySelector(".latest-movie-title").textContent.toLowerCase();
+        const isim = kart.querySelector(".movie-title").textContent.toLowerCase();
         if(isim.includes(aranan)) {
             kart.style.display = "";
         } else {
@@ -22,7 +22,7 @@ const modalGenre = document.getElementById("modalGenre");
 const modalDescription = document.getElementById("modalDescription");
 const modalTrailer = document.getElementById("modalTrailer");
 
-document.querySelectorAll(".latest-movie-card").forEach(function(card) {
+document.querySelectorAll(".movie-card").forEach(function(card) {
     card.addEventListener("click",function() {
         modal.style.display="flex";
 
