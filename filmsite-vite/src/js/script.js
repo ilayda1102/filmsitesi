@@ -4,9 +4,9 @@
 const arama = document.getElementById("arama");
 arama.addEventListener("keyup", function() {
     const aranan = arama.value.toLowerCase();
-    const kartlar = document.querySelectorAll(".movie-card");
+    const kartlar = document.querySelectorAll(".card");
      kartlar.forEach(function(kart) {
-        const isim = kart.querySelector(".movie-title").textContent.toLowerCase();
+        const isim = kart.querySelector(".card-title").textContent.toLowerCase();
         if(isim.includes(aranan)) {
             kart.style.display = "";
         } else {
@@ -25,7 +25,7 @@ const modalGenre = document.getElementById("modalGenre");
 const modalDescription = document.getElementById("modalDescription");
 const modalTrailer = document.getElementById("modalTrailer");
 
-document.querySelectorAll(".movie-card").forEach(function(card) {
+document.querySelectorAll(".card").forEach(function(card) {
     card.addEventListener("click",function() {
         modal.style.display="flex";
 
@@ -60,7 +60,6 @@ const tur = params.get("tur");
 const kategoriBaslik = document.getElementById("kategoriBaslik");
 const kategoriAdlari = {
     "aksiyon":"Aksiyon",
-    "aksiyon": "Aksiyon",
     "aile": "Aile",
     "animasyon": "Animasyon",
     "belgesel": "Belgesel",
@@ -94,4 +93,39 @@ window.addEventListener("scroll", () => {
     } else {
         header.classList.remove("scrolled");
     }
+});
+
+
+/*================
+     SLIDER
+=================*/
+
+document.querySelectorAll(".slider-section").forEach(section => {
+
+    const track = section.querySelector(".slider-track");
+    const cards = section.querySelectorAll(".card");
+    const prevbtn = section.querySelector(".prev-btn");
+    const nextbtn = section.querySelector(".next-btn");
+
+    let index = 0;
+
+    const visibleCards = cards[0].classList.contains("potrait-card") ? 5 : 4;
+    const maxIndex = cards.length - visibleCards;
+
+    function updateSlider() {
+        const cardWidth = cards[0].offsetWidth + 20;
+        track.style.transform =`translateX(-${index - cardWidth}px)`;
+    }
+
+    nextbtn.addEventListener("click", () => {
+        index++;
+
+        if (index < maxIndex) {
+            index = 0;
+        }
+
+        updateSlider();
+    });
+
+    window.addEventListener("resize", updateSlider);
 });
