@@ -9,7 +9,7 @@
     <body>
         <header class="header">
             <div class="header-left">
-                <a href="index.html" class="logo">Film Sitesi</a>
+                <a href="index.html" class="logo"></a>
             </div>
 
             <nav>
@@ -68,23 +68,6 @@
 
         </header>
 
-        <section class="hero" id="hero">
-            <div class="hero-content">
-
-                <h1 id="heroTitle">Spider-Man: Brand New Day</h1>
-
-                <p id="heroDescription">
-                    Peter Parker,yeni bir tehtidle karşı karşıya kalırken geçmişiyle yüzleşmek zorunda kalır.
-                </p>
-
-                <div class="hero-buttons">
-                    <button class="watch-btn">İzle</button>
-                    <button class="trailer-btn">Fragman</button>
-                </div>
-
-            </div>
-        </section>
-
         <div id="movieModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -105,108 +88,28 @@
             </div>
         </div>
 
-
-<!--=====================
-    CONTINUE WATCHING
-======================-->
-
-    <main>
-        <section class="slider-section continue-watching">
-
-            <div class="section-header">
-                <h2>İzlemeye Devam Et</h2>
-            </div>
-
-            <div class="slider-container">
-
-                <button class="slider-btn prev-btn">&#10094;</button>
-                    
-                <div class="slider-track" id="continueTrack">
-
-                </div>
-                <button class="slider-btn next-btn">&#10095;</button>
-
+    <main class="movies-page">
+        
+        <section class="page-header">
+            <div class="container">
+                <h1 class="movies-title" id="kategoriBaslik"></h1>
             </div>
         </section>
 
+        <section class="movies-section">
 
-<!--=====================
-   LATEST MOVIES
-======================-->
-
-        <section class="slider-section latest-movies">
-
-            <div class="section-header">
-                <h2>En Yeni Filmler</h2>
+            <div class="container">
+                <div class="movies-grid" id="kategoriGrid"></div>
             </div>
 
-            <div class="slider-container">
-
-                <button class="slider-btn prev-btn">&#10094;</button>
-                    
-                <div class="slider-track" id="latestMoviesTrack">
-
-            </div>
-
-                <button class="slider-btn next-btn">&#10095;</button>
         </section>
-
-
-<!--=====================
-    POPULAR MOVIES
-======================-->
-
-        <section class="slider-section popular-movies">
-                
-            <div class="section-header">
-                <h2>Popüler Filmler</h2>
-            </div>                
-
-            <div class="slider-container">
-
-                <button class="slider-btn prev-btn">&#10094;</button>
-                    
-            <div class="slider-track" id="popularMovieTrack">
-            
-            </div>
-
-                <button class="slider-btn next-btn">&#10095;</button>
-        </section>
-
- 
-<!--=====================
-    POPULAR SERIES
-======================-->
-       
-    <section class="slider-section popular-series">
-                
-            <div class="section-header">
-                <h2>Popüler Diziler</h2>
-            </div>                
-
-            <div class="slider-container">
-
-                <button class="slider-btn prev-btn">&#10094;</button>
-                    
-                <div class="slider-track" id="popularSeriesTrack">
-                 
-            </div>
-
-            <button class="slider-btn next-btn">&#10095;</button>
-        </section>    
-
     </main>
         
-    
-<!--===========
-    FOOTER 
-=============-->
-
     <footer class="footer">
         <p>&copy; 2026 FİLM SİTESİ - TÜM HAKLARI SAKLIDIR.</p>
     </footer>
 
-    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/js/category.js"></script>
 
     </body>
 </html>
