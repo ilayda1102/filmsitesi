@@ -6,7 +6,10 @@ console.log(seriesGrid);
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
+let genres = {};
+
 function createSeriesCard(series) {
+    const genreNames = series.genre_ids?.join(" ● ")
     return `
         <div class="card portrait-card popular-series-card">
             <img
@@ -18,6 +21,8 @@ function createSeriesCard(series) {
             <div class="card-info">
                 <h3 class="card-title">${series.name}</h3>
                 
+                <p class="card-genre">${genreNames}</p>
+
                 <p class="card-description">
                     ⭐ ${series.vote_average.toFixed(1)}
                 </p>
@@ -25,6 +30,18 @@ function createSeriesCard(series) {
         </div>
     `;
 }
+async function getGenres() {
+    const response = await fetch (
+        `${BASE_URL}/genre/tv/list?api_key=${API_KEY}&language=tr-TR`
+    );
+    const data = await response.json();
+
+    data.genres.forEach((genre) => {
+        genres[genre.id] = genre.name;
+    });
+}
+
+await getGenres();
 
 async function getSeries() {
     const response1 = await fetch(
