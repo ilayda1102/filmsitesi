@@ -129,3 +129,7 @@ document.querySelectorAll(".slider-section").forEach(section => {
 
     window.addEventListener("resize", updateSlider);
 });
+
+/*================
+     BANNER
+=================*/
