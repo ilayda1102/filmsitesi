@@ -122,6 +122,39 @@ nav > a:hover {
     color: #07dffc;
 }
 
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.category-card {
+    width:  100%;
+    height: 180px;
+}
+
+.category-card .card-image {
+    object-fit: cover;
+    object-position:center;
+}
+
+#kategoriGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#kategoriGrid .category-card {
+    flex: 0 0 calc((100% - 60px) / 4);
+    height: 220px;
+}
+
+#kategoriGrid .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
 
 /*================
       ARAMA
@@ -195,7 +228,7 @@ nav > a:hover {
 
 
 /*================
-     ACC DROPDOWN
+    ACC DROPDOWN
 =================*/
 
 .account-dropdown{
@@ -248,6 +281,38 @@ nav > a:hover {
 .account-menu a:hover {
     background: #333;
 }
+
+
+/*==================
+    SWTICH MODE
+===================*/
+
+.light-theme {
+    background: #f5f5f5;
+    color: #222;
+}
+
+.light-theme .header {
+    background: #ffffff;
+    border-bottom: 1px solid #ddd;
+}
+
+.light-theme .account-menu,
+.light-theme .dropdown {
+    background: #ffffff;
+}
+
+.light-theme a {
+    color: #222;
+}
+
+.light-theme input {
+    background: #ffffff;
+    color: #222;
+    border: 1px solid #ccc;
+}
+
+
 
 
 /*================
@@ -399,9 +464,6 @@ nav > a:hover {
 .popular-series .slider-btn {
     height: 420px;
 }
-
-
-
 
 
 /*==============
@@ -683,6 +745,7 @@ nav > a:hover {
     grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
     gap: 24px;
 }
+
 
 
 /*================

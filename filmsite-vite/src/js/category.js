@@ -63,10 +63,11 @@ function displayContent(contents) {
         const title = item.title || item.name;
 
         grid.innerHTML += `
-            <article class="movie-card">
+            <article class="card category-card">
                 <img
-                    src="https://image.tmdb.org/t/p/w500${item.poster_path}"
+                    src="https://image.tmdb.org/t/p/w780${item.backdrop_path}"
                     alt="${title}"
+                    class="card-image"
                 >
 
                 <div class="card-info">

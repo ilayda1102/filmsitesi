@@ -82,7 +82,7 @@ if (tur && kategoriBaslik) {
 }
 
 /*================
-     KATEGORİ
+     HEADER
 =================*/
 
 const header = document.querySelector(".header");
@@ -181,6 +181,8 @@ document.querySelectorAll(".slider-section").forEach(section => {
     });
 }
 
+initSliders();
+
 
 /*==================
     LATEST MOVIES
@@ -215,10 +217,12 @@ async function getLastestMovies() {
         .slice(0, 10)
         .map(createLastestMovieCard)
         .join("");
+
+initSliders();
 }
 
 getLastestMovies();
-initSliders();
+
 
 
 /*==================
@@ -254,10 +258,11 @@ async function getPopularMovies() {
         .slice(0, 10)
         .map(createPopularMovieCard)
         .join("");
+
+initSliders();
 }
 
 getPopularMovies();
-initSliders();
 
 
 /*==================
@@ -293,7 +298,21 @@ async function getPopularSeries() {
         .slice(0, 10)
         .map(createPopularSeriesCard)
         .join("");
+
+initSliders();
 }
 
 getPopularSeries();
-initSliders();
+
+
+/*==================
+    SWITCH MODE
+===================*/
+
+const themeToggle = document.getElementById("theme-toggle");
+
+themeToggle.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    document.body.classList.toggle("light-theme");
+});
