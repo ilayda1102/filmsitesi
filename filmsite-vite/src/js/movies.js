@@ -47,4 +47,7 @@ async function getMovies() {
         });
 }
 
-getMovies();
+export async function loadMovies() {
+    moviesGrid.innerHTML = "";
+    await getMovies();
+}

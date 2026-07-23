@@ -45,8 +45,11 @@ header{
 }
 
 .header.scrolled {
-    background: rgba(15, 15, 15, .95);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, .5);
+    background: rgba(15, 15, 15, .45);
+    backdrop-filter:  blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: none;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
 }
 
 .logo{
@@ -281,38 +284,6 @@ nav > a:hover {
 .account-menu a:hover {
     background: #333;
 }
-
-
-/*==================
-    SWTICH MODE
-===================*/
-
-.light-theme {
-    background: #f5f5f5;
-    color: #222;
-}
-
-.light-theme .header {
-    background: #ffffff;
-    border-bottom: 1px solid #ddd;
-}
-
-.light-theme .account-menu,
-.light-theme .dropdown {
-    background: #ffffff;
-}
-
-.light-theme a {
-    color: #222;
-}
-
-.light-theme input {
-    background: #ffffff;
-    color: #222;
-    border: 1px solid #ccc;
-}
-
-
 
 
 /*================
@@ -853,3 +824,355 @@ nav > a:hover {
     font-size: 14px;
     letter-spacing: 1px;
 }
+
+
+
+/*========================================
+          LIGHT THEME SETTINGS
+==========================================*/
+
+.light-theme {
+    background: #f2eee8;
+    color: #353535;
+}
+
+.light-theme header {
+    background:transparent;
+}
+
+.light-theme .header.scrolled {
+    background: rgba(247, 243, 237, .55);
+    backdrop-filter:  blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: none;
+    border-bottom: 1px solid rgba(120, 120, 120, .15);
+}
+
+
+/*================
+      LOGO
+=================*/
+
+.light-theme .logo {
+    color: white;
+}
+
+.light-theme .logo:hover {
+    color: #07dffc;
+}
+
+
+/*================
+      NAVBAR*
+=================*/
+
+.light-theme nav a {
+    color: white;
+    background: transparent;
+}
+
+.light-theme nav>a:hover {
+    color: #07dffc;
+    background: transparent;
+}
+
+
+/*==================
+    ACCOUNT BUTTON*
+===================*/
+
+.light-theme .account-link {
+    color: white;
+}
+
+
+/*=============
+     SEARCH*
+==============*/
+
+.light-theme input {
+    background: #ffffff;
+    color: #222;
+    border: 1px solid #ddd;
+}
+ .light-theme input::placeholder {
+    color: #777;
+ }
+
+.light-theme input:focus {
+    border-color: #07dffc;
+    box-shadow: 0 0 10px rgba(7, 223, 252, .25);
+}
+
+
+/*===============
+     DROPDOWN 
+=================*/
+
+.light-theme .dropdown {
+    position: relative;
+}
+
+.light-theme .dropdown-menu {
+    display: none;
+}
+
+.light-theme .dropdown:hover .dropdown-menu {
+    display: grid;
+}
+
+.light-theme .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: white;
+
+    width: 550px;
+
+    background: #f3efe9;
+    border: 1px solid #d6cfc6;
+    border-radius: 12px;
+
+    padding: 15px;
+    column-gap: 25px;
+    row-gap: 8px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .10);
+    grid-template-columns: repeat(3, 1fr);
+    z-index: 999;
+}
+
+.light-theme .dropdown-menu a {
+    color: #383838;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 8px;
+    transition: .3;
+}
+
+.light-theme .dropdown-menu a:hover {
+    background: #e7e1d8;
+    color: #1f1f1f;
+    border: 2px solid #cfc7bd;
+}
+
+
+/*=============
+    ACCOUNT*
+==============*/
+
+.light-theme .account-menu {
+    background: #faf8f4;
+    border: 1px solid #ddd;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+}
+
+.light-theme .account-menu a {
+    color: #222;
+}
+
+.light-theme .account-menu a:hover {
+    background: #ece7df;
+}
+
+
+/*=============
+     HERO*
+==============*/
+
+.light-theme .hero {
+    background: linear-gradient(
+        rgba(255, 255, 255, .18),
+        rgba(242, 238, 232, .82)
+    ),
+    url("images/banner.jpg");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.light-theme .hero-content h1 {
+    color: rgba(255, 255, 255, 0.836);
+}
+
+.light-theme .hero-content p {
+    color: #777;
+}
+
+.light-theme .hero::after {
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        #f2eee8
+    );
+}
+
+
+/*=============
+    BUTTONS*
+==============*/
+
+.light-theme .watch-btn,
+.light-theme .trailer-btn {
+    background: linear-gradient(
+        to bottom,
+        #ffffff,
+        #f3efe9
+    );
+
+    color: #222;
+    border: 1px solid #ddd;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+}
+
+.light-theme .watch-btn:hover,
+.light-theme .trailer-btn:hover {
+    background: #ece7df;
+    color: #000;
+}
+.light-theme .slider-btn {
+    background: #ffffff;
+    color: #222;
+    border: 1px solid #ddd;
+}
+
+.light-theme .slider-btn:hover {
+    background: #ece7df;
+}
+
+.light-theme .progress {
+    background: #e50914;
+}
+
+.light-theme .category-btn {
+    background: transparent;
+    color:white;
+    border: none;
+}
+
+.light-theme .category-btn:hover {
+    background: transparent;
+    color: white;
+}
+
+
+/*=============
+     CARDS*
+==============*/
+
+.light-theme .card {
+    background: linear-gradient(
+        to bottom,
+        #ffffff,
+        #f8f5f1
+    );
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+}
+
+.light-theme .card-title {
+    color: #1f1f1f;
+}
+
+.light-theme .card-description {
+    color: #555;
+}
+
+.light-theme .card-genre {
+    color: #777;
+}
+
+.light-theme .card:before {
+
+    background: linear-gradient(
+        to top,
+        rgba(255, 255, 255, .95),
+        rgba(255, 255, 255, .60),
+        transparent
+    );
+}
+
+.light-theme card:hover {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .15);
+}
+
+.light-theme .card:hover .card-image {
+    filter:brightness(.75);
+}
+
+
+/*=============
+     MODAL*
+==============*/
+
+.light-theme .modal-content {
+    background: linear-gradient(
+        to bottom,
+        #ffffff,
+        #f5f1eb
+    );
+}
+
+.light-theme .modal-content::before {
+
+    background: linear-gradient(
+        to top,
+        #faf8f4 0%,
+        rgba(250, 248, 244, .90) 35%,
+        rgba(250, 248, 244, .35) 70%,
+        transparent 100%
+    );
+}
+
+.light-theme .modal-info {
+    color: #222;
+}
+
+.light-theme .modal-info p {
+    color: #555;
+}
+
+.light-theme .close {
+    color: #222;
+}
+
+.light-theme .close:hover {
+    color: #07dffc;
+}
+
+
+/*======================
+    PAGE BACKGROUNDS*
+=====================*/
+
+.light-theme .movies-page,
+.light-theme .series-page,
+.light-theme .list-page {
+    background: linear-gradient(
+        to bottom,
+        #fcfaf6 0%,
+        #f8f5f0 30%,
+        #f4f1eb 70%,
+        #f2eee8 100%
+    );
+}
+
+
+/*=============
+     FOOTER*
+==============*/
+
+.light-theme .footer {
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba( 210, 205, 198, .35) 20%,
+        rgba(205, 198, 190, .75) 100%
+    );
+}
+
+.light-theme .footer p {
+    color: #666;
+}
+
+
+

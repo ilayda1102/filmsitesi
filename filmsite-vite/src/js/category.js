@@ -3,11 +3,7 @@ import "../css/style.css";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
-const params = new URLSearchParams(window.location.search);
-const kategori = params.get("tur");
-
-document.getElementById("kategoriBaslik").textContent =
-    kategori.charAt(0).toUpperCase() + kategori.slice(1);
+let kategori = "";
 
 const genreMap = {
     aksiyon: 28,
@@ -31,9 +27,9 @@ const genreMap = {
 };
 
 
-const genreId = genreMap[kategori];
-
 async function getCategoryContent() {
+
+    const genreId = genreMap[kategori];
 
     const movieresponse = await fetch(
         `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=tr-TR&with_genres=${genreId}`
@@ -80,4 +76,11 @@ function displayContent(contents) {
 
 }
 
-getCategoryContent();
+export function loadCategory(kategoriadi) {
+    kategori = kategoriadi;
+
+    document.getElementById("kategoriBaslik").textContent =
+        kategori.charAt(0).toUpperCase() + kategori.slice(1);
+    
+    getCategoryContent();
+}
