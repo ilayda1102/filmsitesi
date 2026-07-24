@@ -12,7 +12,7 @@ import Movies from "./pages/Movies";
 import Series from "./pages/Series";
 import List from "./pages/List"
 import Category from "./pages/Category";
-
+import Search from "./pages/Search";
 
 
 
@@ -61,6 +61,12 @@ function App() {
                 path="/list"
                 element={<List />}
             />
+
+            <Route
+                path="/search"
+                element={<Search />}
+            />
+
         </Routes>
         <footer />
     </>            

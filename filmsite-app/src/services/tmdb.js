@@ -35,3 +35,17 @@ export async function getMoviesByGenre(genreId) {
     const data = await response.json();
     return data.results;
 }
+
+export async function searchMovies(query) {
+    const response = await fetch(
+        `${BASE_URL}/search/multi?api_key=${API_KEY}&language=tr-TR&query=${encodeURIComponent(query)}`
+    );
+
+    const data = await response.json();
+
+    return data.results.filter(
+        (item) =>
+            (item.media_type === "movie" || item.media_type === "tv") &&
+            item.poster_path
+    );
+}
