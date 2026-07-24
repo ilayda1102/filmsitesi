@@ -287,6 +287,20 @@ nav > a:hover {
 
 
 /*================
+      LIST
+=================*/
+.list-emtpy {
+    width: 100%;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.list-emtpy p {
+    font-size: 22px;
+    color: #bdbdbd;
+}
+
+/*================
       MODAL
 =================*/
 

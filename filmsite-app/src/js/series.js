@@ -9,7 +9,9 @@ const BASE_URL = "https://api.themoviedb.org/3";
 let genres = {};
 
 function createSeriesCard(series) {
-    const genreNames = series.genre_ids?.join(" ● ")
+    const genreNames = series.genre_ids
+    ?.map(id => genre[id])
+    .join(" ● ");
     return `
         <div class="card portrait-card popular-series-card">
             <img
@@ -41,7 +43,7 @@ async function getGenres() {
     });
 }
 
-await getGenres();
+
 
 async function getSeries() {
     const response1 = await fetch(
@@ -64,4 +66,7 @@ async function getSeries() {
         });
 }
  
-getSeries();
+export async function loadSeries() {
+    seriesGrid.innerHTML = "";
+    await getSeries();
+}

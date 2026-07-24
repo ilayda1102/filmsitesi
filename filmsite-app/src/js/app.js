@@ -1,5 +1,7 @@
 import { loadCategory } from "./category.js";
 import { loadMovies } from "./movies.js";
+import { loadSeries } from "./series.js";
+import { loadList } from "./list.js";
 
 const homePage = document.getElementById("homePage");
 const moviesPage = document.getElementById("moviesPage");
@@ -23,17 +25,20 @@ function showPage(pageName) {
 
     if(pageName === "movies") {
         moviesPage.style.display = "block";
+        loadMovies();
     }
 
     if(pageName === "series") {
         seriesPage.style.display = "block";
+        loadSeries();
     }
 
     if(pageName === "list") {
         listPage.style.display = "block"; 
+        loadList();
     }
 
-        if(pageName === "category") {
+    if(pageName === "category") {
         categoryPage.style.display = "block";
     }
 
