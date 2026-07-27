@@ -1,12 +1,33 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { searchMovies } from "../services/tmdb";
-import { useNavigate } from "react-router-dom";
 
 function Header() {
     const [search, setSearch] = useState("");
     const [results, setResults] = useState([]);
-    const navigate = useNavigate();
+    const [lightMode, setLightMode] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const savedTheme = localStorage.getItem("theme");
+
+        if (savedTheme === "light") {
+            document.body.classList.add("light-theme");
+            setLightMode(true);
+        }
+    }, []);
+
+    const toggleTheme = () => {
+        if (lightMode) {
+            document.body.classList.remove("light-theme");
+            localStorage.setItem("theme", "dark");
+        } else {
+            document.body.classList.add("light-theme");
+            localStorage.setItem("theme", "light");
+        }
+
+        setLightMode(!lightMode);
+    };
 
     useEffect(() => {
         if (search.trim().length < 1) {
@@ -21,8 +42,6 @@ function Header() {
 
         return () => clearTimeout(timer);
     }, [search]);
-
-    const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -40,9 +59,10 @@ function Header() {
         <header className={`header ${scrolled ? "scrolled" : ""}`}>
             <div className="header-left">
                 <span
-                    className="logo" 
-                    style={{ cursor: "pointer"}}
-                    onClick={() => window.location.reload()}>
+                    className="logo"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => window.location.reload()}
+                >
                     Film Sitesi
                 </span>
             </div>
@@ -124,9 +144,14 @@ function Header() {
                             Dil: Türkçe
                         </Link>
 
-                        <Link to="#" id="theme-toggle">
-                            Tema: Koyu
-                        </Link>
+                        <button
+                            id="theme-toggle"
+                            type="button"
+                            className="theme-toggle"
+                            onClick={toggleTheme}
+                        >
+                            Tema: {lightMode ? "Açık" : "Koyu"}
+                        </button>
                     </div>
                 </div>
             </div>

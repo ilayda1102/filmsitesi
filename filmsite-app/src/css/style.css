@@ -811,22 +811,6 @@ nav > a:hover {
     HERO ANIMATION
 ===================*/
 
-.hero-content {
-    animation: heroFade .8s ease;
-}
-
-@keyframes heroFade {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 .hero-bg {
     position: absolute;
     inset: 0;
@@ -1066,16 +1050,6 @@ nav > a:hover {
     justify-content: center;
     align-items: center;
     min-height: 350px;
-    background-color: #1a1a1a;
-    border: 1px solid #333;
-    border-radius: 12px;
-}
-
-.list-empty {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 350px;
     padding: 40px;
     background-color: #1a1a1a;
     border: 1px solid #333;
@@ -1125,7 +1099,7 @@ nav > a:hover {
     DİSCOVER BUTTON
 =======================*/
 
-    .discover-btn {
+.discover-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1187,4 +1161,324 @@ nav > a:hover {
 }
 
 
+/*=========================
+        LIGHT MODE
+=========================*/
 
+body.light-theme{
+    background:#f5f5f7;
+    color:#222;
+}
+
+
+/*==============
+     HEADER 
+===============*/
+
+body.light-theme header{
+    background:transparent;
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+body.light-theme .header.scrolled{
+    background:rgba(255,255,255,.96);
+    border-bottom:1px solid #ddd;
+}
+
+body.light-theme .logo,
+body.light-theme nav a,
+body.light-theme .account-link,
+body.light-theme .theme-toggle{
+    color:#222;
+}
+
+body.light-theme nav a:hover,
+body.light-theme .logo:hover,
+body.light-theme .account-link:hover{
+    color:#800020;
+}
+
+
+/*==============
+    TEXT COLOR 
+===============*/
+
+
+body.light-theme h1,
+body.light-theme h2,
+body.light-theme h3,
+body.light-theme h4,
+body.light-theme h5,
+body.light-theme h6{
+    color:#222;
+}
+
+
+
+body.light-theme .slider-title,
+body.light-theme .section-title,
+body.light-theme .home-section h2,
+body.light-theme .movies-title,
+body.light-theme .series-title{
+    color:#222;
+}
+
+
+
+body.light-theme .movie-card h3,
+body.light-theme .movie-card-title,
+body.light-theme .movie-title{
+    color:#222;
+}
+
+
+
+body.light-theme .movie-info,
+body.light-theme .movie-overview,
+body.light-theme .movie-year,
+body.light-theme .movie-rating{
+    color:#555;
+}
+
+/*==============
+     SEARCH 
+===============*/
+
+body.light-theme input,
+body.light-theme #arama{
+    background:#fff;
+    color:#222;
+    border:2px solid #ddd;
+}
+
+body.light-theme input::placeholder,
+body.light-theme #arama::placeholder{
+    color:#777;
+}
+
+body.light-theme #arama:focus{
+    border-color:#800020;
+    box-shadow:0 0 12px rgba(128,0,32,.18);
+}
+
+
+/*==============
+     HERO 
+===============*/
+
+body.light-theme .hero::before{
+    background:linear-gradient(
+        to right,
+        rgba(255,255,255,.92),
+        rgba(255,255,255,.45),
+        rgba(255,255,255,.15)
+    );
+}
+
+body.light-theme .hero h1,
+body.light-theme .hero p,
+body.light-theme .hero-tag{
+    color:#222;
+}
+
+body.light-theme .hero-dot{
+    background:rgba(0,0,0,.25);
+}
+
+body.light-theme .hero-dot.active{
+    background:#800020;
+}
+
+
+/*==============
+     PAGES 
+===============*/
+
+body.light-theme .movies-page,
+body.light-theme .series-page,
+body.light-theme .list-page,
+body.light-theme .search-page,
+body.light-theme .category-page,
+body.light-theme .movie-detail-page{
+    background:linear-gradient(
+        to bottom,
+        #ffffff,
+        #f6f6f6,
+        #eeeeee
+    );
+}
+
+
+/*==============
+     CARDS 
+===============*/
+
+body.light-theme .movie-card{
+    background:#fff;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+body.light-theme .movie-card h3,
+body.light-theme .movie-card p,
+body.light-theme .movie-info,
+body.light-theme .movie-overview{
+    color:#222;
+}
+
+
+/*==============
+     CATEGORY 
+===============*/
+
+body.light-theme .category-header{
+    background:linear-gradient(to bottom,#fff,#f5f5f5);
+    border-bottom:1px solid #ddd;
+}
+
+body.light-theme .category-header h1,
+body.light-theme .category-header p,
+body.light-theme .category-count{
+    color:#222;
+}
+
+body.light-theme .category-filter button{
+    background:#fff;
+    color:#222;
+    border:1px solid #ccc;
+}
+
+body.light-theme .category-filter button:hover{
+    background:#ececec;
+}
+
+body.light-theme .category-filter .active{
+    background:#800020;
+    color:#fff;
+    border-color:#800020;
+}
+
+
+/*==============
+     LIST 
+===============*/
+
+body.light-theme .list-empty{
+    background:#fff;
+    border:1px solid #ddd;
+}
+
+body.light-theme .list-empty p{
+    color:#333;
+}
+
+
+/*==============
+     BUTTON 
+===============*/
+
+body.light-theme .watch-btn,
+body.light-theme .detail-btn,
+body.light-theme .trailer-btn{
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+}
+
+body.light-theme .discover-btn{
+    background:#800020;
+    color:#fff;
+    border:none;
+}
+
+body.light-theme .discover-btn:hover{
+    background:#a00028;
+    color:#fff;
+}
+
+
+/*==============
+     FOOTER 
+===============*/
+
+body.light-theme footer{
+    background:linear-gradient(
+        to bottom,
+        #f8f8f8,
+        #ececec
+    );
+    color:#222;
+    border-top:1px solid #ddd;
+}
+
+body.light-theme footer h3,
+body.light-theme footer p,
+body.light-theme footer a{
+    color:#222;
+}
+
+body.light-theme footer a:hover{
+    color:#800020;
+}
+
+
+/*==============
+     MODAL 
+===============*/
+
+body.light-theme .modal-content{
+    background:#fff;
+    color:#222;
+}
+
+body.light-theme .close-btn{
+    color:#222;
+}
+
+
+/*==============
+    SCROLLBAR 
+===============*/
+
+body.light-theme::-webkit-scrollbar{
+    width:10px;
+}
+
+body.light-theme::-webkit-scrollbar-track{
+    background:#ececec;
+}
+
+body.light-theme::-webkit-scrollbar-thumb{
+    background:#800020;
+    border-radius:20px;
+}
+
+body.light-theme::-webkit-scrollbar-thumb:hover{
+    background:#a00028;
+}
+
+
+/*==============
+    THEME BTN 
+===============*/
+
+.theme-toggle{
+    width:100%;
+    padding:12px 18px;
+
+    background:none;
+    border:none;
+    outline:none;
+
+    color:inherit;
+    font:inherit;
+    text-align:left;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.theme-toggle:hover{
+    color:#800020;
+    background:rgba(128,0,32,.08);
+}
