@@ -11,6 +11,8 @@ function MovieCard({ movie }) {
         className="movie-poster"
       />
 
+      <div className="movie-overlay"></div>
+
       <div className="movie-info">
         <h3>{movie.title || movie.name}</h3>
 

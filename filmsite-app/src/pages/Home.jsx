@@ -7,13 +7,13 @@ import Footer from "../components/Footer";
 function Home({ movies }) {
   return (
     <>
-      <Header />
+      <header />
       <Hero />
 
-      <Slider
+      {/*<Slider
         title="İzlemeye Devam Et"
         movies={movies}
-      />
+      />*/}
 
       <Slider
         title="En Yeni Filmler"

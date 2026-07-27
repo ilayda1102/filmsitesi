@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { searchMovies } from "../services/tmdb";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
     const [search, setSearch] = useState("");
+    const [results, setResults] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (search.trim().length < 2) {
+        if (search.trim().length < 1) {
             setResults([]);
             return;
         }
@@ -20,12 +22,29 @@ function Header() {
         return () => clearTimeout(timer);
     }, [search]);
 
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrolly > 70);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     return (
-        <header className="header">
+        <header className={`header ${scrolled ? "scrolled" : ""}`}>
             <div className="header-left">
-                <Link to="/" className="logo">
+                <span
+                    className="logo" 
+                    style={{ cursor: "pointer"}}
+                    onClick={() => window.location.reload()}>
                     Film Sitesi
-                </Link>
+                </span>
             </div>
 
             <nav>
@@ -74,13 +93,13 @@ function Header() {
 
                 {results.length > 0 && (
                     <div className="search-results">
-                        {results.slice(0, 8).map((item) => (
+                        {results.map((item) => (
                             <Link
                                 key={`${item.media_type}-${item.id}`}
                                 to={
                                     item.media_type === "movie"
                                         ? `/movie/${item.id}`
-                                        : "#"
+                                        : `/tv/${item.id}`
                                 }
                                 onClick={() => {
                                     setSearch("");
