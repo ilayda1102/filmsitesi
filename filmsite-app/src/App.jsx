@@ -1,76 +1,56 @@
 import Header from "./components/Header";
-import Hero from "./components/Hero";
-import MovieModal from "./components/MovieModal";
-import Slider from "./components/Slider";
-import Footer from "./components/Footer";
-import { getPopularMovies } from "./services/tmdb";
-import { useState, useEffect } from "react";
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import MovieDetail from "./pages/MovieDetail";
 import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 import Series from "./pages/Series";
-import List from "./pages/List"
+import List from "./pages/List";
 import Category from "./pages/Category";
 import Search from "./pages/Search";
 
-
-
 function App() {
-    const [movies, setMovies] = useState([]);
-    
-    useEffect(() => {
-        async function loadMovies() {
-            const data = await getPopularMovies();
-            
-            setMovies(data);
-        }
-        loadMovies();
-    }, []);
-
   return (
     <>
-    <Header />
-        <Routes>
-            <Route
-                path="/"
-                element={<Home movies={movies} />}
-            />
+      <Header />
 
-            <Route
-                path="/category/:name"
-                element={<Category />}
-            />           
+      <Routes>
+        <Route
+          path="/"
+          element={<Home />}
+        />
 
-            <Route
-                path="/movie/:id"
-                element={<MovieDetail />}
-            />
-            
-            <Route
-                path="/movies"
-                element={<Movies />}
-            />
+        <Route
+          path="/category/:name"
+          element={<Category />}
+        />
 
-            <Route
-                path="/series"
-                element={<Series />}
-            />
+        <Route
+          path="/movie/:id"
+          element={<MovieDetail />}
+        />
 
-            <Route
-                path="/list"
-                element={<List />}
-            />
+        <Route
+          path="/movies"
+          element={<Movies />}
+        />
 
-            <Route
-                path="/search"
-                element={<Search />}
-            />
+        <Route
+          path="/series"
+          element={<Series />}
+        />
 
-        </Routes>
-        <footer />
-    </>            
-    );
+        <Route
+          path="/list"
+          element={<List />}
+        />
+
+        <Route
+          path="/search"
+          element={<Search />}
+        />
+      </Routes>
+    </>
+  );
 }
 
 export default App;

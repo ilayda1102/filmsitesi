@@ -1,6 +1,11 @@
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3"
 
+
+/*=========================
+           FILMS
+==========================*/
+
 export async function getPopularMovies() {
     const response = await fetch (
         `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=tr-TR&page=1`
@@ -54,33 +59,114 @@ export async function getUpcomingMovies() {
     return data.results;
 }
 
-export async function getActionMovies() {
-    return getMoviesByGenre(28);
-}
+
+/*=========================
+    FILM KATEGORİLERİ
+==========================*/
+
+export async function getActionMovies() { 
+    return getMoviesByGenre(28);}
 
 export async function getComedyMovies() {
-    return getMoviesByGenre(35);
-}
+    return getMoviesByGenre(35);}
 
 export async function getHorrorMovies() {
-    return getMoviesByGenre(27);
-}
+    return getMoviesByGenre(27);}
 
 export async function getThrillerMovies() {
-    return getMoviesByGenre(53);
-}
+    return getMoviesByGenre(53);}
 
 export async function getScienceFictionMovies() {
-    return getMoviesByGenre(878);
-}
+    return getMoviesByGenre(878);}
 
 export async function getRomanceMovies() {
-    return getMoviesByGenre(10749);
-}
+    return getMoviesByGenre(10749);}
 
 export async function getAnimationMovies() {
-    return getMoviesByGenre(16);
+    return getMoviesByGenre(16);}
+
+
+/*=========================
+    DİZİ KATEGORİLERİ
+==========================*/
+
+
+// ===================== DİZİLER =====================
+
+export async function getPopularTV() {
+    const response = await fetch(
+        `${BASE_URL}/tv/popular?api_key=${API_KEY}&language=tr-TR&page=1`
+    );
+
+    const data = await response.json();
+    return data.results;
 }
+
+export async function getTopRatedTV() {
+    const response = await fetch(
+        `${BASE_URL}/tv/top_rated?api_key=${API_KEY}&language=tr-TR&page=1`
+    );
+
+    const data = await response.json();
+    return data.results;
+}
+
+export async function getOnTheAirTV() {
+    const response = await fetch(
+        `${BASE_URL}/tv/on_the_air?api_key=${API_KEY}&language=tr-TR&page=1`
+    );
+
+    const data = await response.json();
+    return data.results;
+}
+
+export async function getTVByGenre(genreId) {
+    const response = await fetch(
+        `${BASE_URL}/discover/tv?api_key=${API_KEY}&language=tr-TR&with_genres=${genreId}`
+    );
+
+    const data = await response.json();
+    return data.results;
+}
+
+export async function getAiringTodayTV() {
+    const response = await fetch(
+        `${BASE_URL}/tv/airing_today?api_key=${API_KEY}&language=tr-TR&page=1`
+    );
+
+    const data = await response.json();
+    return data.results;
+}
+
+
+/*=========================
+    DİZİ KATEGORİLERİ
+==========================*/
+
+export async function getActionTV() {
+    return getTVByGenre(10759);}
+
+export async function getComedyTV() {
+    return getTVByGenre(35);}
+
+export async function getHorrorTV() {
+    return getTVByGenre(9648);}
+
+export async function getThrillerTV() {
+    return getTVByGenre(80);}
+
+export async function getScienceFictionTV() {
+    return getTVByGenre(10765);}
+
+export async function getRomanceTV() {
+    return getTVByGenre(10766);}
+
+export async function getAnimationTV() {
+    return getTVByGenre(16);}
+
+/*=========================
+          SEARCH
+==========================*/
 
 export async function searchMovies(query) {
     const response = await fetch(

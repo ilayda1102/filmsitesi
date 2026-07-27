@@ -21,7 +21,6 @@ header{
     top: 0;
     left: 0;
     width: 100%;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -57,7 +56,7 @@ header{
 
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 2px solid white;
 
     padding: 16px 40px;
 }
@@ -72,7 +71,7 @@ header{
 }
 
 .logo:hover{
-    color: #07dffc;
+    color: #800020;
 }
 
 input{
@@ -106,7 +105,7 @@ nav a{
 
 nav > a:hover {
     background: transparent;
-    color: #07dffc;
+    color: #800020;
 }
 
 .account-link{
@@ -118,55 +117,122 @@ nav > a:hover {
 
 
 /*================
-     KATEGORİ
+      BADGE
 =================*/
 
-.category-btn {
-    padding: 10px 18px;
-    border-radius: 10px;
-    transition: .3s;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+.movie-title-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+
+    margin-bottom:10px;
 }
 
-.category-btn:hover {
-    background: transparent;
-    color: #07dffc;
+.movie-title-row h3{
+    margin:0;
+    font-size:20px;
+    flex:1;
 }
 
-.category-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+.media-badge{
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    font-size:11px;
+    font-weight:700;
+
+    white-space:nowrap;
 }
 
-.category-card {
-    width:  100%;
-    height: 180px;
+.media-badge.movie{
+    background:#005c80;
+    color:#fff;
 }
 
-.category-card .card-image {
-    object-fit: cover;
-    object-position:center;
+.media-badge.tv{
+    background:#32243A;
+    color:#fff;
 }
 
-#kategoriGrid {
+
+/*================
+   CATEGORY PAGE
+=================*/
+
+.category-header{
+    padding: 140px 60px 50px;
+    background: linear-gradient(
+        to bottom,
+        #0f0f0f 0%,
+        #161616 55%,
+        #1a1a1a 100%
+    );
+    border-bottom: 1px solid #2d2d2d;
+}
+
+.category-content{
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+.category-header h1{
+    font-size: 52px;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.category-header p{
+    color: #b3b3b3;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.category-count{
+    display: block;
+    color: #8a8a8a;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.category-filter{
     display: flex;
+    gap: 15px;
     flex-wrap: wrap;
-    gap: 20px;
 }
 
-#kategoriGrid .category-card {
-    flex: 0 0 calc((100% - 60px) / 4);
-    height: 220px;
+.category-filter button{
+    padding: 12px 24px;
+    background: #252525;
+    color: #fff;
+    border: 1px solid #3a3a3a;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .3s ease;
 }
 
-#kategoriGrid .card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+.category-filter button:hover{
+    background: #333;
+    border-color: #555;
+}
+
+.category-filter .active{
+    background: #800020;
+    border-color: #800020;
+}
+
+.movie-grid{
+    max-width: 1800px;
+    margin: 60px auto;
+    padding: 0 60px 40px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+    gap: 28px;
 }
 
 /*================
@@ -420,7 +486,14 @@ nav > a:hover {
 .slider-track {
     display: flex;
     gap: 20px;
-    transition: transform .4s ease;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.slider-track::-webkit-scrollbar {
+    display: none;
 }
 
 .slider-btn {
@@ -637,12 +710,13 @@ nav > a:hover {
 .hero {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    min-height: 70vh;
 
     display: flex;
     align-items: center;
 
-    padding: 120px 80px 80px;
+    padding: 100px 80px 40px;
+    transition: background-image .8s ease;
 
     background-size: cover;
     background-position: center;
@@ -681,7 +755,7 @@ nav > a:hover {
 }
 
 .hero-tag {
-    color: #e50914;
+    color: #ddd;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 3px;
@@ -717,6 +791,7 @@ nav > a:hover {
 }
 
 .watch-btn,
+.detail-btn,
 .trailer-btn {
     border: none;
     border-radius: 10px;
@@ -731,56 +806,106 @@ nav > a:hover {
     transition: .3s;
 }
 
-.watch-btn {
-    background: #e50914;
-    color: #fff;
+
+/*==================
+    HERO ANIMATION
+===================*/
+
+.hero-content {
+    animation: heroFade .8s ease;
 }
 
-.watch-btn:hover {
-    background: #f6121d;
-    transform: translateY(-2px);
+@keyframes heroFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.trailer-btn {
-    background: rgba(255,255,255,.12);
-    color: #fff;
-    border: 1px solid rgba(255,255,255,.25);
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: opacity .8s ease, transform 8s ease;
+    transform: scale(1.05);
 }
 
-.trailer-btn:hover {
-    background: rgba(255,255,255,.2);
-    transform: translateY(-2px);
+.hero-bg.active {
+    opacity: 1;
+}
+
+.hero-bg.hidden {
+    opacity: 0;
 }
 
 
 /*==================
-      BUTTON
+      HERO SLIDER
 ===================*/
 
-.hero-buttons {
-    display: flex;
-    gap: 15px;
+.hero {
+    transition: background-image .8s ease-in-out;
 }
 
-.watch-btn,
-.trailer-btn {
-    display:inline-block;
-    margin-top: 20px;
-    padding: 12px 22px;
-    background: #252525;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
+.hero-content {
+    animation: heroFade .8s ease;
+}
+
+@keyframes heroFade {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*==================
+      DOTS
+===================*/
+
+.hero-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 12px;
+
+    z-index: 5;
+}
+
+.hero-dot {
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.35);
+
+    cursor: pointer;
+
     transition: .3s;
 }
 
-.watch-btn:hover,
-.trailer-btn:hover {
-    background: #ddd;
-    color: black;
+.hero-dot:hover {
+    background: rgba(255,255,255,.7);
 }
 
+.hero-dot.active {
+    background: #800020;
+    transform: scale(1.25);
+}
 
 /*====================
       MOVIES CARD
@@ -936,7 +1061,7 @@ nav > a:hover {
     LIST PAGE
 =================*/
 
-.list-emtpy {
+.list-empty {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -946,7 +1071,19 @@ nav > a:hover {
     border-radius: 12px;
 }
 
-.list-emtpy p {
+.list-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px;
+    padding: 40px;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.list-empty p {
     color: #b3b3b3;
     font-size: 20px;
 }
@@ -959,7 +1096,7 @@ nav > a:hover {
         #0f0f0f 0%,
         #161616 30%,
         #1a1a1a 70%,
-        #111111 
+        #111111 100%
     );
 }
 
@@ -982,6 +1119,47 @@ nav > a:hover {
     margin: 0 auto;
     padding: 0 60px;
 }
+
+
+/*======================
+    DİSCOVER BUTTON
+=======================*/
+
+    .discover-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    margin-top: 25px;
+    padding: 14px 30px;
+
+    background: #333;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid white;
+
+    border-radius: 8px;
+    transition: all .3s ease;
+    box-shadow: 0 8px 20px #1a1a1a;
+}
+
+.discover-btn:hover {
+    background: #b3b3b3;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px #1f1f1f;
+    font-weight: bold;
+    color: black;
+    border: 3px solid black;
+}
+
+.discover-btn:active {
+    transform: scale(.97);
+}
+
+
 /*================
       FOOTER
 =================*/
