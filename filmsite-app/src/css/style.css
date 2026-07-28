@@ -853,6 +853,7 @@ nav > a:hover {
     }
 }
 
+
 /*==================
       DOTS
 ===================*/
@@ -890,6 +891,7 @@ nav > a:hover {
     background: #800020;
     transform: scale(1.25);
 }
+
 
 /*====================
       MOVIES CARD
@@ -1191,13 +1193,83 @@ body.light-theme .logo,
 body.light-theme nav a,
 body.light-theme .account-link,
 body.light-theme .theme-toggle{
-    color:#222;
+    color: black;
 }
 
 body.light-theme nav a:hover,
 body.light-theme .logo:hover,
 body.light-theme .account-link:hover{
     color:#800020;
+}
+
+
+/*==============
+    ACCOUNT 
+===============*/
+
+body.light-theme .account-menu{
+    background:#fff;
+    border:1px solid #ddd;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+body.light-theme .account-menu a{
+    display:block;
+    color:#222;
+    background:#fff;
+}
+
+body.light-theme .account-menu button{
+    width:100%;
+    text-align:left;
+
+    color:#222;
+    background:#fff;
+
+    border:none;
+    outline:none;
+
+    cursor:pointer;
+}
+
+body.light-theme .account-menu a:hover,
+body.light-theme .account-menu button:hover{
+    background:#800020;
+    color: #f2f2f2;
+    font-weight: bold;
+    border: 2px solid #ccc;
+}
+
+body.light-theme .account-menu .theme-toggle{
+    background:#fff !important;
+    color:#222 !important;
+}
+
+body.light-theme .account-menu .theme-toggle:hover{
+    background:#800020 !important;
+    color:#f2f2f2 !important;
+}
+
+
+/*==============
+    DROPDOWN 
+===============*/
+
+body.light-theme .dropdown-menu{
+    background:#fff;
+    border:1px solid #ddd;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+body.light-theme .dropdown-menu a,
+body.light-theme .dropdown-menu button{
+    color:#222;
+}
+
+body.light-theme .dropdown-menu a:hover,
+body.light-theme .dropdown-menu button:hover{
+    background:#800020;
+    color:#fff;
 }
 
 
@@ -1215,8 +1287,6 @@ body.light-theme h6{
     color:#222;
 }
 
-
-
 body.light-theme .slider-title,
 body.light-theme .section-title,
 body.light-theme .home-section h2,
@@ -1225,21 +1295,12 @@ body.light-theme .series-title{
     color:#222;
 }
 
-
-
-body.light-theme .movie-card h3,
-body.light-theme .movie-card-title,
-body.light-theme .movie-title{
-    color:#222;
-}
-
-
-
 body.light-theme .movie-info,
-body.light-theme .movie-overview,
-body.light-theme .movie-year,
-body.light-theme .movie-rating{
-    color:#555;
+body.light-theme .movie-info h3,
+body.light-theme .movie-meta,
+body.light-theme .media-badge {
+    color: #fff !important;
+    font-weight: bold;
 }
 
 /*==============
@@ -1320,13 +1381,6 @@ body.light-theme .movie-card{
     box-shadow:0 10px 25px rgba(0,0,0,.08);
 }
 
-body.light-theme .movie-card h3,
-body.light-theme .movie-card p,
-body.light-theme .movie-info,
-body.light-theme .movie-overview{
-    color:#222;
-}
-
 
 /*==============
      CATEGORY 
@@ -1384,13 +1438,13 @@ body.light-theme .trailer-btn{
     box-shadow:0 8px 18px rgba(0,0,0,.08);
 }
 
-body.light-theme .discover-btn{
-    background:#800020;
-    color:#fff;
+body.light-theme .detail-btn{
+    background:#fff;
+    color:#333;
     border:none;
 }
 
-body.light-theme .discover-btn:hover{
+body.light-theme .detail-btn:hover{
     background:#a00028;
     color:#fff;
 }

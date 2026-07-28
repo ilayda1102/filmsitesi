@@ -113,7 +113,7 @@ function Header() {
 
                 {results.length > 0 && (
                     <div className="search-results">
-                        {results.map((item) => (
+                        {results.slice(0, 6).map((item) => (
                             <Link
                                 key={`${item.media_type}-${item.id}`}
                                 to={

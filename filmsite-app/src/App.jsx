@@ -7,12 +7,14 @@ import Series from "./pages/Series";
 import List from "./pages/List";
 import Category from "./pages/Category";
 import Search from "./pages/Search";
+import ScrollToTop from "./ScrollToTop";
+
 
 function App() {
   return (
     <>
       <Header />
-
+      <ScrollToTop />
       <Routes>
         <Route
           path="/"
