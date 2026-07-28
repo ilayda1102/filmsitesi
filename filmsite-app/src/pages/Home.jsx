@@ -41,6 +41,15 @@ function Home() {
     );
   }, []);
 
+  useEffect(() => {
+    document.body.classList.add("home-page");
+
+    return () => {
+        document.body.classList.remove("home-page");
+    };
+  }, []);
+
+  
   return (
     <>
       <Hero 

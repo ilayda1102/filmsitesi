@@ -9,55 +9,64 @@ import Category from "./pages/Category";
 import Search from "./pages/Search";
 import ScrollToTop from "./ScrollToTop";
 import Login from "./pages/Login";
+import TvDetail from "./pages/TvDetail";
+
 
 function App() {
   return (
     <>
       <Header />
       <ScrollToTop />
-      <Routes>
-        <Route
-          path="/"
-          element={<Home />}
-        />
+      <main className="page-content">
+        <Routes>
+          <Route
+            path="/"
+            element={<Home />}
+          />
 
-        <Route
-          path="/category/:name"
-          element={<Category />}
-        />
+          <Route
+            path="/category/:name"
+            element={<Category />}
+          />
 
-        <Route
-          path="/movie/:id"
-          element={<MovieDetail />}
-        />
+          <Route
+            path="/movie/:id"
+            element={<MovieDetail />}
+          />
 
-        <Route
-          path="/movies"
-          element={<Movies />}
-        />
+          <Route
+            path="/tv/:id"
+            element={<TvDetail />}
+          />
 
-        <Route
-          path="/series"
-          element={<Series />}
-        />
+          <Route
+            path="/movies"
+            element={<Movies />}
+          />
 
-        <Route
-          path="/list"
-          element={<List />}
-        />
+          <Route
+            path="/series"
+            element={<Series />}
+          />
 
-        <Route
-          path="/search"
-          element={<Search />}
-        />
+          <Route
+            path="/list"
+            element={<List />}
+          />
 
-        <Route
-          path="/login"
-          element={<Login />}
-        />
+          <Route
+            path="/search"
+            element={<Search />}
+          />
+
+          <Route
+            path="/login"
+            element={<Login />}
+          />
 
 
-      </Routes>
+        </Routes>
+      </main>
     </>
   );
 }

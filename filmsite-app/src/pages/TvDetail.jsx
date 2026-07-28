@@ -1,32 +1,32 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getMovieDetails, getMovieCredits } from "../services/tmdb";
+import { getTVDetails, getTVCredits } from "../services/tmdb";
 
-function MovieDetail() {
+function TvDetail() {
     const { id } = useParams();
 
-    const [movie, setMovie] = useState(null);
+    const [tv, setTv] = useState(null);
     const [cast, setCast] = useState([]);
 
     useEffect(() => {
         document.body.classList.add("movie-detail-page");
 
-        async function loadMovie() {
-            const data = await getMovieDetails(id);
-            setMovie(data);
+        async function loadTV() {
+            const data = await getTVDetails(id);
+            setTv(data);
 
-            const actors = await getMovieCredits(id);
+            const actors = await getTVCredits(id);
             setCast(actors);
         }
 
-        loadMovie();
+        loadTV();
 
         return () => {
             document.body.classList.remove("movie-detail-page");
         };
     }, [id]);
 
-    if (!movie) {
+    if (!tv) {
         return <h2>Yükleniyor...</h2>;
     }
 
@@ -40,9 +40,8 @@ function MovieDetail() {
                     rgba(17,17,17,.65),
                     rgba(17,17,17,.35)
                 ),
-                url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
+                url(https://image.tmdb.org/t/p/original${tv.backdrop_path})`,
             }}
-            
         >
             <div className="detail-container">
 
@@ -50,37 +49,39 @@ function MovieDetail() {
 
                     <img
                         className="detail-poster"
-                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                        alt={movie.title}
+                        src={`https://image.tmdb.org/t/p/w500${tv.poster_path}`}
+                        alt={tv.name}
                     />
 
                     <div className="detail-info">
 
-                        <h1>{movie.title}</h1>
+                        <h1>{tv.name}</h1>
 
-                        <p><strong>IMDB:</strong> {movie.vote_average.toFixed(1)}</p>
+                        <p><strong>IMDB:</strong> {tv.vote_average.toFixed(1)}</p>
 
-                        <p><strong>Çıkış Tarihi:</strong> {movie.release_date}</p>
+                        <p><strong>Yayın Yılları:</strong> {tv.first_air_date} - {tv.last_air_date} </p>
 
-                        <p><strong>Süre:</strong> {movie.runtime} dk</p>
+                        <p><strong>Sezon Sayısı:</strong> {tv.number_of_seasons}</p>
+
+                        <p><strong>Bölüm Sayısı:</strong> {tv.number_of_episodes}</p>
 
                         <p>
                             <strong>Tür:</strong>{" "}
-                            {movie.genres.map((genre) => (
+                            {tv.genres.map((genre) => (
                                 <span key={genre.id}>
                                     {genre.name}{" "}
                                 </span>
                             ))}
                         </p>
 
-                        {movie.tagline && (
+                        {tv.tagline && (
                             <p className="tagline">
-                                {movie.tagline}
+                                {tv.tagline}
                             </p>
                         )}
 
                         <p className="overview">
-                            {movie.overview}
+                            {tv.overview}
                         </p>
 
                     </div>
@@ -106,9 +107,10 @@ function MovieDetail() {
                         </div>
                     ))}
                 </div>
-            </div>
-        </div>
+
+            </div> 
+        </div> 
     );
 }
 
-export default MovieDetail;
+export default TvDetail;

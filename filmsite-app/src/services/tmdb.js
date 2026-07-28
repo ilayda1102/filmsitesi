@@ -94,10 +94,6 @@ export async function getAnimationMovies() {
     return getMoviesByGenre(16);}
 
 
-/*=========================
-    DİZİ KATEGORİLERİ
-==========================*/
-
 
 // ===================== DİZİLER =====================
 
@@ -126,6 +122,24 @@ export async function getAiringTodayTV() {
     return fetchMultiplePages("/tv/airing_today");
 }
 
+
+export async function getTVDetails(id) {
+    const response = await fetch(
+        `${BASE_URL}/tv/${id}?api_key=${API_KEY}&language=tr-TR`
+    );
+
+    const data = await response.json();
+    return data;
+}
+
+export async function getTVCredits(id) {
+    const response = await fetch(
+        `${BASE_URL}/tv/${id}/credits?api_key=${API_KEY}&language=tr-TR`
+    );
+
+    const data = await response.json();
+    return data.cast;
+}
 
 /*=========================
     DİZİ KATEGORİLERİ

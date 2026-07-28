@@ -4,7 +4,7 @@ function MovieModal() {
       <div className="modal-content">
         <span className="close">&times;</span>
 
-        <img id="modalImage" src="" alt="" />
+        <img id="modalImage" alt="" />
 
         <div className="modal-info">
           <h2 id="modalTitle"></h2>

@@ -46,10 +46,17 @@ function Header() {
         return () => clearTimeout(timer);
     }, [search]);
 
+    
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 70);
+            if (document.body.classList.contains("home-page")) {
+                setScrolled(window.scrollY > 70);
+            } else {
+                setScrolled(false);
+            }
         };
+
+        handleScroll();
 
         window.addEventListener("scroll", handleScroll);
 
@@ -57,6 +64,7 @@ function Header() {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
 
     useEffect(() => {
         const handleClickOutside = (event) => {

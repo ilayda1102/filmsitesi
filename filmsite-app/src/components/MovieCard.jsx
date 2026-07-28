@@ -2,11 +2,22 @@ import { Link } from "react-router-dom";
 
 function MovieCard({ movie }) {
   return (
-    <Link to={`/movie/${movie.id}`} className="movie-card">
+    <Link
+      to={
+        movie.media_type === "tv"
+          ? `/tv/${movie.id}`
+          : `/movie/${movie.id}`
+      }
+      className="movie-card"
+    >
       <img
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-        alt={movie.title || movie.name}
         className="movie-poster"
+        src={
+          movie.poster_path
+            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+            : "/no-image.png"
+        }
+        alt={movie.title || movie.name}
       />
 
       <div className="movie-overlay"></div>
@@ -17,8 +28,8 @@ function MovieCard({ movie }) {
 
           <span
             className={`media-badge ${
-              movie.media_type === "tv" ? "tv" : "movie"}
-            `}
+              movie.media_type === "tv" ? "tv" : "movie"
+            }`}
           >
             {movie.media_type === "tv" ? "Dizi" : "Film"}
           </span>
