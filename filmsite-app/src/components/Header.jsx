@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { searchMovies } from "../services/tmdb";
 
 function Header() {
@@ -7,6 +7,7 @@ function Header() {
     const [results, setResults] = useState([]);
     const [lightMode, setLightMode] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const searchRef = useRef(null);
 
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme");
@@ -53,6 +54,23 @@ function Header() {
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
+    }, []);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                searchRef.current &&
+                !searchRef.current.contains(event.target)
+            ) {
+                setResults([]);
+            }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+    };
     }, []);
 
     return (
@@ -103,7 +121,7 @@ function Header() {
                 </div>
             </nav>
 
-            <div className="header-right">
+            <div className="header-right" ref={searchRef}>
                 <input
                     type="text"
                     placeholder="Film, dizi ara..."
@@ -126,7 +144,22 @@ function Header() {
                                     setResults([]);
                                 }}
                             >
-                                {item.title || item.name}
+                                <>
+                                    <img
+                                        src={`https://image.tmdb.org/t/p/w92${item.poster_path}`}
+                                        alt={item.title || item.name}
+                                        className="search-poster"
+                                    />
+
+                                    <div className="search-info">
+                                        <h4>{item.title || item.name}</h4>
+
+                                        <span>
+                                            {item.media_type === "tv" ? "Dizi" : "Film"} •{" "}
+                                            {(item.release_date || item.first_air_date)?.split("-")[0]}
+                                        </span>
+                                    </div>
+                                </>
                             </Link>
                         ))}
                     </div>

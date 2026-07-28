@@ -42,6 +42,7 @@ header{
 }
 
 .header-right{
+    position: relative;
     display: flex;
     align-items: center;
     gap: 30px;
@@ -254,6 +255,84 @@ nav > a:hover {
 }
 
 
+/*====================
+    SEARCH DROPDOWN
+=====================*/
+
+.search-results{
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+
+    width: 350px;
+
+    background:#1a1a1a;
+    border:1px solid #333;
+    border-radius:12px;
+
+    overflow:hidden;
+    z-index:9999;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+
+.search-results a{
+    display:block;
+    padding:12px 16px;
+    color:#fff;
+    text-decoration:none;
+    transition:.25s;
+}
+
+.search-results a:hover{
+    background:#800020;
+    color:#fff;
+}
+
+
+/*================
+    SEARCH BOX
+=================*/
+
+.search-results a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:10px 14px;
+
+    text-decoration:none;
+    color:#fff;
+
+    transition:.25s;
+}
+
+.search-poster{
+    width:42px;
+    height:60px;
+    border-radius:6px;
+    object-fit:cover;
+    flex-shrink:0;
+}
+
+.search-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.search-info h4{
+    margin:0;
+    font-size:15px;
+    font-weight:600;
+}
+
+.search-info span{
+    margin-top:4px;
+    font-size:13px;
+    color:#bdbdbd;
+}
+
+
 /*================
       DROPDOWN
 =================*/
@@ -365,6 +444,7 @@ nav > a:hover {
 /*================
       LIST
 =================*/
+
 .list-emtpy {
     width: 100%;
     text-align: center;
@@ -375,6 +455,7 @@ nav > a:hover {
     font-size: 22px;
     color: #bdbdbd;
 }
+
 
 /*================
       MODAL
@@ -1163,9 +1244,7 @@ nav > a:hover {
 }
 
 
-/*=========================
-        LIGHT MODE
-=========================*/
+/*=========================================LIGHT MODE=============================================*/
 
 body.light-theme{
     background:#f5f5f7;
@@ -1177,12 +1256,6 @@ body.light-theme{
      HEADER 
 ===============*/
 
-body.light-theme header{
-    background:transparent;
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
-}
 
 body.light-theme .header.scrolled{
     background:rgba(255,255,255,.96);
@@ -1270,6 +1343,34 @@ body.light-theme .dropdown-menu a:hover,
 body.light-theme .dropdown-menu button:hover{
     background:#800020;
     color:#fff;
+}
+
+
+/*====================
+    SEARCH DROPDOWN
+=====================*/
+
+/* SEARCH */
+body.light-theme .search-results{
+    background:#ffffff;
+    border:1px solid #dcdcdc;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+body.light-theme .search-results a{
+    color:#222;
+}
+
+body.light-theme .search-results a:hover{
+    background:#f3f3f3;
+}
+
+body.light-theme .search-info h4{
+    color:#222;
+}
+
+body.light-theme .search-info span{
+    color:#777;
 }
 
 
