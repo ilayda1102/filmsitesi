@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import { Routes, Route } from "react-router-dom";
 import MovieDetail from "./pages/MovieDetail";
+import TvDetail from "./pages/TvDetail";
 import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 import Series from "./pages/Series";
@@ -9,7 +10,8 @@ import Category from "./pages/Category";
 import Search from "./pages/Search";
 import ScrollToTop from "./ScrollToTop";
 import Login from "./pages/Login";
-import TvDetail from "./pages/TvDetail";
+import Register from "./pages/Register";
+
 
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
       <ScrollToTop />
       <main className="page-content">
         <Routes>
+
           <Route
             path="/"
             element={<Home />}
@@ -64,6 +67,10 @@ function App() {
             element={<Login />}
           />
 
+          <Route
+            path="/register"
+            element={<Register />}
+          />
 
         </Routes>
       </main>

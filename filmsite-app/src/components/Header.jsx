@@ -5,6 +5,7 @@ import { searchMovies } from "../services/tmdb";
 
 
 function Header() {
+    const [user, setUser] = useState(null);
     const [search, setSearch] = useState("");
     const [results, setResults] = useState([]);
     const [lightMode, setLightMode] = useState(false);
@@ -102,7 +103,7 @@ function Header() {
 
                 <Link to="/series">Diziler</Link>
 
-                <Link to="/list">Listem</Link>
+                {user && <Link to="/list">Listem</Link>}
 
                 <div className="dropdown">
                     <Link to="#" className="category-btn">
@@ -177,24 +178,17 @@ function Header() {
                     </div>
                 )}
 
-                <div className="account-dropdown">
-                    <Link to="#" className="account-link">
-                        Hesap
-                    </Link>
 
-                    <div className="account-menu">
-                        <Link to="/login">
-                            Profil
-                        </Link>
+                <div className="settings-dropdown">
+                    <button
+                        type="button"
+                        className="settings-btn"
+                    >
+                        ⚙️
+                    </button>
 
-
-                        <Link to="#" id="language-toggle">
-                            Dil: Türkçe
-                        </Link>
-
-
+                    <div className="settings-menu">
                         <button
-                            id="theme-toggle"
                             type="button"
                             className="theme-toggle"
                             onClick={toggleTheme}
@@ -202,10 +196,48 @@ function Header() {
                             Tema: {lightMode ? "Açık" : "Koyu"}
                         </button>
 
+                        <button
+                            type="button"
+                            className="language-btn"
+                        >
+                            Dil: Türkçe
+                        </button>
                     </div>
                 </div>
-            </div>
 
+
+               {user ? (
+                    <div className="account-dropdown">
+                        <button type="button" className="account-link">
+                            {user.username}
+                        </button>
+
+                        <div className="account-menu">
+                            <Link to="/profile">
+                                Profil
+                            </Link>
+
+                            <button
+                                type="button"
+                                className="logout-btn"
+                            >
+                                Çıkış Yap
+                            </button>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="auth-buttons">
+                        <Link to="/login" className="login-btn">
+                            Giriş Yap
+                        </Link>
+
+                        <Link to="/register" className="register-btn">
+                            Kayıt Ol
+                        </Link>
+                    </div>
+                )}
+                
+            </div>
         </header>
     );
 }

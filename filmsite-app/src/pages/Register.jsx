@@ -5,7 +5,12 @@ function Login() {
     return (
             <div className="login-page">
                 <div className="login-box">
-                    <h1>Giriş Yap</h1>
+                    <h1>Kayıt Ol</h1>
+
+                    <input
+                        type="text"
+                        placeholder="Kullanıcı Adı"
+                    />
 
                     <input
                         type="email"
@@ -17,12 +22,17 @@ function Login() {
                         placeholder="Şifre"
                     />
 
-                    <button>Giriş Yap</button>
+                    <input
+                        type="password"
+                        placeholder="Şifre Tekrar"
+                    />
+
+                    <button>Kayıt Ol</button>
 
                     <p>
-                        Hesabın yok mu?{" "}
-                        <Link to="/register" className="register-link">
-                            Kayıt Ol
+                        Zaten hesabın var mı?{" "}
+                        <Link to="/login" className="login-link">
+                            Giriş Yap
                         </Link>
                     </p>
 
