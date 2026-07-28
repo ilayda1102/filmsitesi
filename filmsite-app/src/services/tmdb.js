@@ -3,16 +3,34 @@ const BASE_URL = "https://api.themoviedb.org/3"
 
 
 /*=========================
+           PAGES
+==========================*/
+
+async function fetchMultiplePages(endpoint, totalPages = 3) {
+    const requests = [];
+
+    for (let page = 1; page <= totalPages; page++) {
+        requests.push(
+            fetch(
+                `${BASE_URL}${endpoint}?api_key=${API_KEY}&language=tr-TR&page=${page}`
+            ).then((res) => res.json())
+        );
+    }
+
+    const results = await Promise.all(requests);
+
+    const allResults = results.flatMap((item) => item.results);
+    return [
+        ...new Map(allResults.map((item) => [item.id, item])).values()
+    ];
+}
+
+/*=========================
            FILMS
 ==========================*/
 
 export async function getPopularMovies() {
-    const response = await fetch (
-        `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=tr-TR&page=1`
-    );
-    const data = await response.json();
-
-    return data.results;
+    return fetchMultiplePages("/movie/popular");
 }
 
 export async function getMovieDetails(id) {
@@ -42,21 +60,11 @@ export async function getMoviesByGenre(genreId) {
 }
 
 export async function getTopRatedMovies() {
-    const response = await fetch(
-        `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=tr-TR&page=1`
-    );
-
-    const data = await response.json();
-    return data.results;
+    return fetchMultiplePages("/movie/top_rated");
 }
 
 export async function getUpcomingMovies() {
-    const response = await fetch(
-        `${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=tr-TR&page=1`
-    );
-
-    const data = await response.json();
-    return data.results;
+    return fetchMultiplePages("/movie/upcoming");
 }
 
 
@@ -94,30 +102,15 @@ export async function getAnimationMovies() {
 // ===================== DİZİLER =====================
 
 export async function getPopularTV() {
-    const response = await fetch(
-        `${BASE_URL}/tv/popular?api_key=${API_KEY}&language=tr-TR&page=1`
-    );
-
-    const data = await response.json();
-    return data.results;
+    return fetchMultiplePages("/tv/popular");
 }
 
 export async function getTopRatedTV() {
-    const response = await fetch(
-        `${BASE_URL}/tv/top_rated?api_key=${API_KEY}&language=tr-TR&page=1`
-    );
-
-    const data = await response.json();
-    return data.results;
+    return fetchMultiplePages("/tv/top_rated");
 }
 
 export async function getOnTheAirTV() {
-    const response = await fetch(
-        `${BASE_URL}/tv/on_the_air?api_key=${API_KEY}&language=tr-TR&page=1`
-    );
-
-    const data = await response.json();
-    return data.results;
+    return fetchMultiplePages("/tv/on_the_air");
 }
 
 export async function getTVByGenre(genreId) {
@@ -130,12 +123,7 @@ export async function getTVByGenre(genreId) {
 }
 
 export async function getAiringTodayTV() {
-    const response = await fetch(
-        `${BASE_URL}/tv/airing_today?api_key=${API_KEY}&language=tr-TR&page=1`
-    );
-
-    const data = await response.json();
-    return data.results;
+    return fetchMultiplePages("/tv/airing_today");
 }
 
 

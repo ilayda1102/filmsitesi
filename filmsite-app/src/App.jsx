@@ -8,7 +8,7 @@ import List from "./pages/List";
 import Category from "./pages/Category";
 import Search from "./pages/Search";
 import ScrollToTop from "./ScrollToTop";
-
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -50,6 +50,13 @@ function App() {
           path="/search"
           element={<Search />}
         />
+
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+
       </Routes>
     </>
   );

@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { searchMovies } from "../services/tmdb";
 
+
+
 function Header() {
     const [search, setSearch] = useState("");
     const [results, setResults] = useState([]);
@@ -146,7 +148,9 @@ function Header() {
                             >
                                 <>
                                     <img
-                                        src={`https://image.tmdb.org/t/p/w92${item.poster_path}`}
+                                        src={
+                                            item.poster_path? `https://image.tmdb.org/t/p/w92${item.poster_path}`: "/no-image.png"
+                                        }
                                         alt={item.title || item.name}
                                         className="search-poster"
                                     />
@@ -171,11 +175,15 @@ function Header() {
                     </Link>
 
                     <div className="account-menu">
-                        <Link to="#">Profil</Link>
+                        <Link to="/login">
+                            Profil
+                        </Link>
+
 
                         <Link to="#" id="language-toggle">
                             Dil: Türkçe
                         </Link>
+
 
                         <button
                             id="theme-toggle"
@@ -185,9 +193,11 @@ function Header() {
                         >
                             Tema: {lightMode ? "Açık" : "Koyu"}
                         </button>
+
                     </div>
                 </div>
             </div>
+
         </header>
     );
 }
