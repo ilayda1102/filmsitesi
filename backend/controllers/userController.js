@@ -1,6 +1,10 @@
 const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+const prisma = new PrismaClient();
+
+const JWT_SECRET = "film_sitesi_gizli_anahtar";
 
 const register = async (req, res) => {
     const { username, email, password } = req.body;
@@ -35,7 +39,22 @@ const login = async (req, res) => {
     if (!isMatch) {
         return res.status(401).send("Şifre yanlış..")
     }
-    res.send("Giriş başarılı.");
+
+    const token = jwt.sign(
+        {
+            id: user.id,
+            email:user.email,
+        },
+        JWT_SECRET,
+        {
+            expiresIn: "7d",
+        }
+    );
+
+    res.status(200).json({
+        message: "Giriş başarılı.",
+        token
+    });
 }
 
 
