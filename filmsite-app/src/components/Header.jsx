@@ -179,33 +179,6 @@ function Header() {
                 )}
 
 
-                <div className="settings-dropdown">
-                    <button
-                        type="button"
-                        className="settings-btn"
-                    >
-                        ⚙️
-                    </button>
-
-                    <div className="settings-menu">
-                        <button
-                            type="button"
-                            className="theme-toggle"
-                            onClick={toggleTheme}
-                        >
-                            Tema: {lightMode ? "Açık" : "Koyu"}
-                        </button>
-
-                        <button
-                            type="button"
-                            className="language-btn"
-                        >
-                            Dil: Türkçe
-                        </button>
-                    </div>
-                </div>
-
-
                {user ? (
                     <div className="account-dropdown">
                         <button type="button" className="account-link">
@@ -236,6 +209,33 @@ function Header() {
                         </Link>
                     </div>
                 )}
+
+                <div className="settings-dropdown">
+                    <button
+                        type="button"
+                        className="settings-btn"
+                    >
+                        ⚙️
+                    </button>
+
+                    <div className="settings-menu">
+                        <button
+                            type="button"
+                            className="theme-toggle"
+                            onClick={toggleTheme}
+                        >
+                            Tema: {lightMode ? "Açık" : "Koyu"}
+                        </button>
+
+                        <button
+                            type="button"
+                            className="language-btn"
+                        >
+                            Dil: Türkçe
+                        </button>
+                    </div>
+                </div>
+
                 
             </div>
         </header>

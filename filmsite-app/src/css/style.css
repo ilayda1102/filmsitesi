@@ -172,6 +172,17 @@ body:not(.home-page) .header.scrolled {
     color:#800020;
 }
 
+.register-link,
+.login-link {
+    color: #800020;
+    font-weight: bold;
+}   
+
+.register-link:hover,
+.login-link:hover {
+    color: #a00028;
+}
+
 
 /*================
   HEADER SETTING
@@ -180,9 +191,11 @@ body:not(.home-page) .header.scrolled {
 .settings-dropdown{
     position:relative;
     margin-left:18px;
+    display: flex;
+    align-items: center;
 }
 
-.settings-btn{
+.settings-btn {
     width:40px;
     height:40px;
     border:none;
@@ -200,9 +213,9 @@ body:not(.home-page) .header.scrolled {
 
 .settings-menu{
     position:absolute;
-    top:48px;
+    top:100%;
     right:0;
-    width:180px;
+    width: 120px;
     background:#222;
     border-radius:10px;
     overflow:hidden;
@@ -226,6 +239,7 @@ body:not(.home-page) .header.scrolled {
     transition:.3s;
     font-size:.95rem;
     font-family:inherit;
+    font-weight: bold;
 }
 
 .settings-menu button:hover{
@@ -247,6 +261,7 @@ body:not(.home-page) .header.scrolled {
 
 .language-btn:hover{
     background:#333;
+    color: #800020;
 }
 
 /*================
@@ -420,11 +435,6 @@ body:not(.home-page) .header.scrolled {
     font-weight: 600;
     cursor: pointer;
     transition: all .3s ease;
-}
-
-.category-filter button:hover{
-    background: #333;
-    border-color: #555;
 }
 
 .category-filter .active{
@@ -724,6 +734,10 @@ body:not(.home-page) .page-content {
     z-index: 999;
 }
 
+.dropdown:hover > .category-btn {
+    color: #800020 !important;
+}
+
 .dropdown-menu a {
     color: white;
     text-decoration: none;
@@ -734,7 +748,7 @@ body:not(.home-page) .page-content {
 
 .dropdown-menu a:hover {
     background: #333;
-    color: white;
+    color: #800020;
     border: 2px solid #ddd;
 }
 
@@ -1615,7 +1629,6 @@ body.light-theme{
      HEADER 
 ===============*/
 
-
 body.light-theme .header.scrolled{
     background:rgba(255,255,255,.96);
     border-bottom:1px solid #ddd;
@@ -1642,6 +1655,52 @@ body.light-theme:not(.home-page) .header {
 body.light-theme:not(.home-page) .header.scrolled {
     background: #f5f5f7;
     border-bottom: 1px solid black;
+}
+
+
+/*===================
+     HEADER SETTING
+====================*/
+
+body.light-theme .settings-btn {
+    background:#fff;
+    color:#2d2d2d;
+    border: 1px solid #cfcfcf;
+}
+
+body.light-theme .settings-menu {
+    background:#fff;
+    color: #222;
+    box-shadow:0 10px 25px rgba(0,0,0,.4);
+
+}
+
+body.light-theme .settings-menu button {
+    color:#333;
+    
+}
+
+body.light-theme .settings-menu button:hover {
+    background:#f2f2f2;
+}
+
+body.light-theme .language-btn {
+    color:#333;
+}
+
+body.light-theme .language-btn:hover {
+    background:#f2f2f2;
+    color: #333;
+}
+
+body.light-theme .login-btn,
+body.light-theme .register-btn {
+    color: black;
+}
+
+body.light-theme .login-btn:hover,
+body.light-theme .register-btn:hover {
+    color: #800020;
 }
 
 
@@ -1980,10 +2039,6 @@ body.light-theme .category-filter button{
     background:#fff;
     color:#222;
     border:1px solid #ccc;
-}
-
-body.light-theme .category-filter button:hover{
-    background:#ececec;
 }
 
 body.light-theme .category-filter .active{
