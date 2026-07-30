@@ -269,11 +269,12 @@ body:not(.home-page) .header.scrolled {
 =================*/
 
 .login-page{
-    min-height:100vh;
+    min-height: calc(100vh - 100px);
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:40px 20px;
+    padding: 0;
+    overflow: hidden;
 
     background:#111;
 }
@@ -453,10 +454,6 @@ body:not(.home-page) .header.scrolled {
 }
 
 .page-content {
-    padding-top: 0;
-}
-
-body:not(.home-page) .page-content {
     padding-top: 100px;
 }
 

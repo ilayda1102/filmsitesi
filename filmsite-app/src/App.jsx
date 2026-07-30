@@ -11,8 +11,7 @@ import Search from "./pages/Search";
 import ScrollToTop from "./ScrollToTop";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-
-
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -20,6 +19,7 @@ function App() {
       <Header />
       <ScrollToTop />
       <main className="page-content">
+        
         <Routes>
 
           <Route
@@ -70,6 +70,11 @@ function App() {
           <Route
             path="/register"
             element={<Register />}
+          />
+
+          <Route
+            path="/profile"
+            element={<Profile />}
           />
 
         </Routes>

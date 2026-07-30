@@ -5,12 +5,37 @@ import { searchMovies } from "../services/tmdb";
 
 
 function Header() {
-    const [user, setUser] = useState(null);
     const [search, setSearch] = useState("");
     const [results, setResults] = useState([]);
     const [lightMode, setLightMode] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const searchRef = useRef(null);
+    const [user, setUser] = useState(null);
+    const [language, setlanguage] = useState(
+        localStorage.getItem("language") || "tr"
+    );
+    
+    useEffect (() => {
+        const token = localStorage.getItem("token");
+
+        if (!token) return;
+
+        
+        fetch("http://localhost:5000/profile", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
+
+        .then((res) => res.json())
+        .then((data) => {
+            setUser(data.user);
+        })
+        .catch(() => {
+            localStorage.removeItem("token");
+        });
+    }, []);
+
 
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme");
@@ -32,6 +57,20 @@ function Header() {
 
         setLightMode(!lightMode);
     };
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        setUser(null);
+        window.location.href = "/";
+    };
+
+    const toggleLanguage = () => {
+        const newLanguage = language === "tr" ? "en" : "tr";
+        setLanguage(newLanguage);
+        localStorage.setItem("language", newLanguage);
+    };
+
+
 
     useEffect(() => {
         if (search.trim().length < 1) {
@@ -187,54 +226,77 @@ function Header() {
 
                         <div className="account-menu">
                             <Link to="/profile">
-                                Profil
+                                Profilim
                             </Link>
 
                             <button
                                 type="button"
+                                className="theme-toggle"
+                                onClick={toggleTheme}
+                            >
+                                Tema: {lightMode ? "Açık" : "Koyu"}
+                            </button>
+
+                            <button
+                                type="button"
+                                className="language-btn"
+                                onClick={toggleLanguage}
+                            >
+                                Dil: {language === "tr" ? "Türkçe" : "English"}
+                            </button>
+
+                            <button
+                                type="button"
                                 className="logout-btn"
+                                onClick={handleLogout}
                             >
                                 Çıkış Yap
                             </button>
                         </div>
                     </div>
                 ) : (
+                    
                     <div className="auth-buttons">
-                        <Link to="/login" className="login-btn">
-                            Giriş Yap
-                        </Link>
+                            <Link to="/login" className="login-btn">
+                                Giriş Yap
+                            </Link>
 
-                        <Link to="/register" className="register-btn">
-                            Kayıt Ol
-                        </Link>
+                            <Link to="/register" className="register-btn">
+                                Kayıt Ol
+                            </Link>
+
+                        <div className="settings-dropdown">
+                            <button
+                                type="button"
+                                className="settings-btn"
+                            >
+                                ⚙️
+                            </button>
+
+                            <div className="settings-menu">
+                                <button
+                                    type="button"
+                                    className="theme-toggle"
+                                    onClick={toggleTheme}
+                                >
+                                    Tema: {lightMode ? "Açık" : "Koyu"}
+                                </button>
+
+                                <button
+                                    type="button"
+                                    className="language-btn"
+                                    onClick={toggleLanguage}
+                                >
+                                    Dil: {language === "tr" ? "Türkçe" : "English"}
+                                </button>
+
+                            </div>
+                        </div>
                     </div>
                 )}
 
-                <div className="settings-dropdown">
-                    <button
-                        type="button"
-                        className="settings-btn"
-                    >
-                        ⚙️
-                    </button>
 
-                    <div className="settings-menu">
-                        <button
-                            type="button"
-                            className="theme-toggle"
-                            onClick={toggleTheme}
-                        >
-                            Tema: {lightMode ? "Açık" : "Koyu"}
-                        </button>
-
-                        <button
-                            type="button"
-                            className="language-btn"
-                        >
-                            Dil: Türkçe
-                        </button>
-                    </div>
-                </div>
+                
 
                 
             </div>

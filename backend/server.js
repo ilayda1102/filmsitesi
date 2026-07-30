@@ -15,6 +15,10 @@ app.get("/", (req, res) => {
     res.send("Film sitesi backend çalışıyor.")
 });
 
+app.post("/test", (req, res) => {
+    res.json({mesaj: "test başarılı"});
+});
+
 app.listen(5000, () => {
     console.log("Server çalışıyor");
-});
+}); 
