@@ -1,7 +1,9 @@
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = "film_sitesi_gizli_anahtar";
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
-const authMiddleware = (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
@@ -15,8 +17,15 @@ const authMiddleware = (req, res, next) => {
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
 
-        req.user = decoded;
+        const user = await prisma.user.findUnique({
+            where: {
+                id: decoded.id,
+            },
+        });
+
+        req.user = user,
         next();
+
     } catch (error) {
         return res.status(401).json({
             message: "Geçersiz veya süresi dolmuş oturum."

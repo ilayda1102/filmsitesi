@@ -457,6 +457,9 @@ body:not(.home-page) .header.scrolled {
     padding-top: 100px;
 }
 
+.home-content {
+    padding-top: 0;
+}
 
 /*=====================
       MOVIE DETAIL
@@ -763,28 +766,37 @@ body:not(.home-page) .header.scrolled {
     display: flex;
     align-items: center;
     gap: 6px;
-    color: white;
-    text-decoration: none;
+
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 8px 14px;
     cursor: pointer;
+    transition: .3s;
 }
 
 .account-menu{
-    position: absolute;
-    top: 130%;
-    right: 0;
-    width: 150px;
-    background: #252525;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    font-weight: bold;
-    overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, .35);
+    position:absolute;
+    top:55px;
+    right:0;
 
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: .25s;
-    z-index: 1000;
+    width:150px;
+    background:#202020;
+    border:1px solid #333;
+    border-radius:12px;
+
+    display:flex;
+    flex-direction:column;
+
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(10px);
+
+    transition:.25s;
+
+    z-index:999;
 }
 
 .account-dropdown:hover .account-menu {
@@ -793,16 +805,24 @@ body:not(.home-page) .header.scrolled {
     transform: translateY(0);
 }
 
-.account-menu a {
-    display: block;
+.account-menu a,
+.account-menu button {
+    width: 100%;
     padding: 14px 18px;
+    background: none;
+    border: none;
     color: white;
-    text-decoration: none;
-    transition: .2s;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .25s;
 }
 
-.account-menu a:hover {
-    background: #333;
+.account-menu a:hover,
+.account-menu button:hover {
+    background: #464545;
+    color: #800020;
 }
 
 
@@ -1152,7 +1172,6 @@ body:not(.home-page) .header.scrolled {
       HERO 
 ================*/
 
-
 .hero {
     position: relative;
     width: 100%;
@@ -1165,7 +1184,7 @@ body:not(.home-page) .header.scrolled {
     transition: background-image .8s ease;
 
     background-size: cover;
-    background-position: center;
+    background-position: center 20%;
     background-repeat: no-repeat;
 
     overflow: hidden;
@@ -1206,6 +1225,13 @@ body:not(.home-page) .header.scrolled {
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100;
+    object-fit: cover;
+    object-position: center 20%;
 }
 
 .hero h1 {

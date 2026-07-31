@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { searchMovies } from "../services/tmdb";
 
@@ -11,30 +11,45 @@ function Header() {
     const [scrolled, setScrolled] = useState(false);
     const searchRef = useRef(null);
     const [user, setUser] = useState(null);
-    const [language, setlanguage] = useState(
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [language, setLanguage] = useState(
         localStorage.getItem("language") || "tr"
     );
     
-    useEffect (() => {
+    useEffect(() => {
+    const loadUser = () => {
         const token = localStorage.getItem("token");
 
-        if (!token) return;
+        if (!token) {
+            setUser(null);
+            return;
+        }
 
-        
         fetch("http://localhost:5000/profile", {
             headers: {
                 Authorization: `Bearer ${token}`,
-            }
+            },
         })
+            .then((res) => res.json())
+            .then((data) => {
+                setUser(data.user);
+            })
+            .catch(() => {
+                localStorage.removeItem("token");
+                setUser(null);
+            });
+        };
 
-        .then((res) => res.json())
-        .then((data) => {
-            setUser(data.user);
-        })
-        .catch(() => {
-            localStorage.removeItem("token");
-        });
-    }, []);
+        loadUser();
+
+        window.addEventListener("focus", loadUser);
+
+        return () => {
+            window.removeEventListener("focus", loadUser);
+        };
+
+    }, [location.pathname]);
 
 
     useEffect(() => {
@@ -61,7 +76,7 @@ function Header() {
     const handleLogout = () => {
         localStorage.removeItem("token");
         setUser(null);
-        window.location.href = "/";
+        navigate("/");
     };
 
     const toggleLanguage = () => {
@@ -220,14 +235,19 @@ function Header() {
 
                {user ? (
                     <div className="account-dropdown">
+
                         <button type="button" className="account-link">
-                            {user.username}
+                            👤 {user?.username}
                         </button>
 
                         <div className="account-menu">
-                            <Link to="/profile">
+
+                            <button 
+                                type="button"
+                                onClick={() => navigate("/profile")}
+                            >
                                 Profilim
-                            </Link>
+                            </button>
 
                             <button
                                 type="button"

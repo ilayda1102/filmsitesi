@@ -12,13 +12,21 @@ import ScrollToTop from "./ScrollToTop";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import { useLocation } from "react-router-dom";
 
 function App() {
+  const location = useLocation();
   return (
     <>
       <Header />
       <ScrollToTop />
-      <main className="page-content">
+      <main 
+        className={
+            location.pathname === "/"
+              ? "page-content home-content"
+              : "page-content"
+        }
+      >
         
         <Routes>
 
