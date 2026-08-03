@@ -2043,6 +2043,52 @@ body.light-theme .search-info span{
 
 
 /*==============
+      PROFİL
+================*/
+body.light-theme .profile-card {
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+body.light-theme .profile-icon {
+    color: #555;
+}
+
+body.light-theme .profile-title {
+    color: #222;
+}
+
+body.light-theme .profile-section h2 {
+    color: #444;
+}
+
+body.light-theme .profile-info {
+    color: #555;
+}
+
+body.light-theme .profile-btn {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .3s;
+}
+
+body.light-theme .profile-btn:hover {
+    transform: translateY(-2px);
+    background: #222;
+    box-shadow: 0 6px 16px rgba(229, 9, 20, .25);
+}
+
+
+/*===========x===
     TEXT COLOR 
 ===============*/
 
@@ -2078,7 +2124,7 @@ body.light-theme .media-badge {
 
 body.light-theme input,
 body.light-theme #arama{
-    background:#fff;
+    background:#ebebeb;
     color:#222;
     border:2px solid #ddd;
 }
@@ -2090,7 +2136,7 @@ body.light-theme #arama::placeholder{
 
 body.light-theme #arama:focus{
     border-color:#800020;
-    box-shadow:0 0 12px rgba(128,0,32,.18);
+    box-shadow:0 0 12px rgba(214, 214, 214, 0.18);
 }
 
 
