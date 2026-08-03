@@ -204,3 +204,4 @@ export async function searchMovies(query) {
             return (b.popularity || 0) - (a.popularity || 0);
         });
 }
+

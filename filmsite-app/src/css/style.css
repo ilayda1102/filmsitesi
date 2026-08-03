@@ -927,6 +927,140 @@ body:not(.home-page) .header.scrolled {
 
 
 /*===================
+    PROFILE MODAL 
+====================*/
+
+.profile-overlay{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,.75);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+    animation: fadeIn .25s ease;
+}
+
+.profile-modal-content{
+    position: relative;
+    width: 470px;
+    max-width: 92%;
+    background: linear-gradient(180deg,#242424,#171717);
+    border: 1px solid #3a3a3a;
+    border-radius: 18px;
+    padding: 35px;
+    color: white;
+    box-shadow: 0 25px 70px rgba(0,0,0,.65);
+    animation: modalOpen .25s ease;
+}
+
+.profile-modal-content h2{
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+}
+
+.profile-modal-content input{
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    transition: .25s;
+    box-sizing: border-box;
+}
+
+.profile-modal-content input::placeholder{
+    color:#9d9d9d;
+}
+
+.profile-modal-content input:focus{
+    outline:none;
+    border-color:#fff;
+    box-shadow:0 0 0 3px rgba(0,0,0,.35);
+}
+
+.modal-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:12px;
+    margin-top:25px;
+}
+
+.save-btn{
+    background:#cf214d;
+    color:white;
+    border:none;
+    padding:12px 24px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.save-btn:hover{
+    background:#800020;
+    transform:translateY(-2px);
+}
+
+.cancel-btn{
+    background:#3b3b3b;
+    color:white;
+    border:none;
+    padding:12px 24px;
+    border-radius:10px;
+    font-size:15px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.cancel-btn:hover{
+    background:#4b4b4b;
+    transform:translateY(-2px);
+}
+
+.modal-close{
+    position:absolute;
+    top:15px;
+    right:18px;
+    background:none;
+    border:none;
+    color:white;
+    font-size:28px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.modal-close:hover{
+    color:#800020;
+    transform:rotate(90deg);
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+@keyframes modalOpen{
+    from{
+        opacity:0;
+        transform:scale(.9) translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+
+/*===================
     SLIDER SECTİON 
 ====================*/
 
@@ -2326,6 +2460,67 @@ body.light-theme .modal-content{
 
 body.light-theme .close-btn{
     color:#222;
+}
+
+
+/*=================
+    PROFILE MODAL 
+==================*/
+
+body.light-theme .profile-overlay{
+    background: rgba(255,255,255,.55);
+    backdrop-filter: blur(6px);
+}
+
+body.light-theme .profile-modal-content{
+    background: linear-gradient(180deg,#ffffff,#f5f5f5);
+    border: 1px solid #dcdcdc;
+    color: #222;
+    box-shadow: 0 25px 70px rgba(0,0,0,.18);
+}
+
+body.light-theme .profile-modal-content h2{
+    color:#222;
+}
+
+body.light-theme .profile-modal-content input{
+    background:#ffffff;
+    color:#222;
+    border:1px solid #800020;
+}
+
+body.light-theme .profile-modal-content input::placeholder{
+    color:#8a8a8a;
+}
+
+body.light-theme .profile-modal-content input:focus{
+    border-color:#800020;
+}
+
+body.light-theme .save-btn{
+    background:#cf214d;
+    color:#fff;
+}
+
+body.light-theme .save-btn:hover{
+    background:#800020;
+}
+
+body.light-theme .cancel-btn{
+    background:#444;
+    color:#fff;
+}
+
+body.light-theme .cancel-btn:hover{
+    background:#777;
+}
+
+body.light-theme.modal-close{
+    color:#444;
+}
+
+body.light-theme.modal-close:hover{
+    color:#800020;
 }
 
 

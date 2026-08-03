@@ -1,34 +1,33 @@
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = "film_sitesi_gizli_anahtar";
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
 
-const authMiddleware = async (req, res, next) => {
+const JWT_SECRET = "film_sitesi_gizli_anahtar";
+
+const authMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
         return res.status(401).json({
-            message: "Token bulunamadı."
+            message: "Token bulunamadı.",
         });
     }
 
     const token = authHeader.split(" ")[1];
 
-    try {
-        const decoded = jwt.verify(token, JWT_SECRET);
-
-        const user = await prisma.user.findUnique({
-            where: {
-                id: decoded.id,
-            },
+    if (!token) {
+        return res.status(401).json({
+            message: "Geçersiz token.",
         });
+    }
 
-        req.user = user,
+    try {
+        const user = jwt.verify(token, JWT_SECRET);
+
+        req.user = user;
+
         next();
-
     } catch (error) {
         return res.status(401).json({
-            message: "Geçersiz veya süresi dolmuş oturum."
+            message: "Token geçersiz.",
         });
     }
 };

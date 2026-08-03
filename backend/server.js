@@ -9,7 +9,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/", userRoutes);
+app.use("/api/users", userRoutes);
 app.use("/favorites", favoriteRoutes);
 
 app.get("/", (req, res) => {
@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/test", (req, res) => {
-    res.json({mesaj: "test başarılı"});
+    res.json({mesaj: "Test başarılı"});
 });
 
 app.listen(5000, () => {
