@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getMovieDetails, getMovieCredits } from "../services/tmdb";
+import { getMovieDetails, getMovieCredits, getMovieVideos } from "../services/tmdb";
 
 function MovieDetail() {
     const { id } = useParams();
 
     const [movie, setMovie] = useState(null);
     const [cast, setCast] = useState([]);
+    const [trailer, setTrailer] = useState(null);
 
     useEffect(() => {
         document.body.classList.add("movie-detail-page");
@@ -17,6 +18,14 @@ function MovieDetail() {
 
             const actors = await getMovieCredits(id);
             setCast(actors);
+
+            const videos = await getMovieVideos(id);
+            const trailerVideo = videos.find(
+                (video) =>
+                    video.site === "YouTube" &&
+                    video.type === "Trailer"
+            );
+            setTrailer(trailerVideo);
         }
 
         loadMovie();
@@ -82,6 +91,17 @@ function MovieDetail() {
                         <p className="overview">
                             {movie.overview}
                         </p>
+
+                        {trailer && (
+                            <a
+                                href={`htpps://www.youtube.com/watch?v=${trailer.key}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="watch-trailer-btn"
+                            >
+                                Fragmanı İzle 🎬
+                            </a>
+                        )}
 
                     </div>
 

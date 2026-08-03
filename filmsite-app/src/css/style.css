@@ -600,7 +600,30 @@ body:not(.home-page) .header.scrolled {
 
 }
 
-/*================
+.watch-trailer-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top:25px;
+    padding:14px 24px;
+    background:#222;
+    color:#fff;
+    border: 2px solid #ddd;
+    text-decoration:none;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.watch-trailer-btn:hover{
+    background:#800020;
+    transform:translateY(-2px);
+    color: black;
+}
+
+
+/*================"
       ARAMA
 =================*/
 #arama {
@@ -2082,6 +2105,18 @@ body.light-theme .detail-poster{
 
 body.light-theme .cast-card img{
     border-bottom:1px solid #eee;
+}
+
+body.light-theme .watch-trailer-btn{
+    background:#ddd;
+    color: black;
+    border: 2px solid #222;
+
+}
+
+body.light-theme .watch-trailer-btn:hover{
+    background:#800020;
+    color: white;
 }
 
 

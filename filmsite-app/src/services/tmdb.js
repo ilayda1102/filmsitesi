@@ -205,3 +205,10 @@ export async function searchMovies(query) {
         });
 }
 
+export async function getMovieVideos(id) {
+    const response = await fetch(
+        `${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}&language=tr-TR`
+    );
+    const data = await response.json();
+    return data.results;
+}
