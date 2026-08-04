@@ -2,12 +2,14 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import SplashScreen from "../components/SplashScreen";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
+    const [showSplash, setShowSplash] = useState(false);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -25,8 +27,11 @@ function Login() {
             localStorage.setItem("username", response.data.user.username);
             
             setErrorMessage("");
-
-            navigate("/");
+            setShowSplash(true);
+            setTimeout(() => {
+                navigate("/");
+            }, 1000);
+            
 
         } catch (error) {
             if (error.response?.tatus === 404) {
@@ -44,6 +49,9 @@ function Login() {
         }
     };
 
+    if (showSplash) {
+        return <SplashScreen />;
+    }
 
     return (
             <div className="login-page">

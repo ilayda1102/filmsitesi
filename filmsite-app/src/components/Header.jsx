@@ -3,7 +3,6 @@ import { useEffect, useState, useRef } from "react";
 import { searchMovies } from "../services/tmdb";
 
 
-
 function Header() {
     const [search, setSearch] = useState("");
     const [results, setResults] = useState([]);
@@ -13,6 +12,7 @@ function Header() {
     const [user, setUser] = useState(null);
     const location = useLocation();
     const navigate = useNavigate();
+    const [showSplash, setShowSplash] = useState(false);
     const [language, setLanguage] = useState(
         localStorage.getItem("language") || "tr"
     );
@@ -74,9 +74,7 @@ function Header() {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
-        setUser(null);
-        navigate("/");
+        navigate("/logout");
     };
 
     const toggleLanguage = () => {

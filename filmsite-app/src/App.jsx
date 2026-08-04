@@ -13,8 +13,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import { useLocation } from "react-router-dom";
-/*import ChangePassword from "/pages/ChangePassword";
-import ChangeEmail from "/pages/ChangeEmail";*/
+import Logout from "./pages/Logout";
 
 
 function App() {
@@ -36,6 +35,11 @@ function App() {
           <Route
             path="/profile"
             element={<Profile />}
+          />
+
+          <Route
+            path="/logout"
+            element={<Logout />}
           />
 
           <Route
