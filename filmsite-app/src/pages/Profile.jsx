@@ -15,6 +15,9 @@ function Profile() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [emailPassword, setEmailPassword] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+
   const handleChangePassword = async () => {
     if (newPassword !== confirmPassword) {
       setErrorMessage("Yeni şifreler eşleşmiyor.");
@@ -79,6 +82,54 @@ function Profile() {
 
   };
 
+    const handleChangeEmail = async () => {
+    const token = localStorage.getItem("token");
+
+    try {
+      const response = await fetch("http://localhost:5000/api/users/change-email", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          currentPassword: emailPassword,
+          newEmail,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("email", newEmail);
+
+        setSuccessMessage("E-posta başarıyla değiştirildi.");
+
+        setEmailPassword("");
+        setNewEmail("");
+
+        setTimeout(() => {
+          setSuccessMessage("");
+          setShowEmailModal(false);
+        }, 2000);
+
+      } else {
+        setErrorMessage(data.message);
+
+        setEmailPassword("");
+        setNewEmail("");
+
+        setTimeout(() => {
+          setErrorMessage("");
+        }, 2000);
+      }
+
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  
   return (
     <>
         <div className="profile-container">
@@ -198,30 +249,51 @@ function Profile() {
               className="profile-modal-content"
               onClick={(e) => e.stopPropagation()}
             >
-              <h2>Gmail Değiştir</h2>
+              {(successMessage || errorMessage) && (
+                <div className={`modal-alert ${successMessage ? "success" : "error"}`}>
+                  {successMessage || errorMessage}
+                </div>
+              )}
 
-              <input
-                type="password"
-                placeholder="Şifreniz"
-              />
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleChangeEmail();
+                }}
+              >
+                <h2>Gmail Değiştir</h2>
 
-              <input
-                type="email"
-                placeholder="Yeni Gmail"
-              />
+                <input
+                  type="password"
+                  placeholder="Şifreniz"
+                  value={emailPassword}
+                  onChange={(e) => setEmailPassword(e.target.value)}
+                />
 
-              <div className="modal-buttons">
-                <button className="save-btn">
-                  Kaydet
-                </button>
+                <input
+                  type="email"
+                  placeholder="Yeni Gmail"
+                  value={newEmail}
+                  onChange={(e) => setNewEmail(e.target.value)}
+                />
 
-                <button
-                  className="cancel-btn"
-                  onClick={() => setShowEmailModal(false)}
-                >
-                  İptal
-                </button>
-              </div>
+                <div className="modal-buttons">
+                  <button
+                    type="submit"
+                    className="save-btn"
+                  >
+                    Kaydet
+                  </button>
+
+                  <button
+                    type="button"
+                    className="cancel-btn"
+                    onClick={() => setShowEmailModal(false)}
+                  >
+                    İptal
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         )}

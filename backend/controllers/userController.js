@@ -1,7 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { isMarkedAsUntransferable } = require("node:worker_threads");
 
 const prisma = new PrismaClient();
 
@@ -126,32 +125,69 @@ const changePassword = async (req, res) => {
     }
 };
 
+const changeEmail = async (req, res) => {
+    const { currentPassword, newEmail } = req.body;
+    const userId = req.user.id;
 
+    try {
+        const user = await prisma.user.findUnique({
+            where: {
+                id: userId,
+            },
+        });
 
+        if (!user) {
+            return res.status(404).json({
+                message: "Kullanıcı bulunamadı."
+            });
+        }
 
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
 
+        if (!isMatch) {
+            return res.status(400).json({
+                message: "Mevcut şifre yanlış."
+            });
+        }
 
+        const existingEmail = await prisma.user.findUnique({
+            where: {
+                email: newEmail,
+            },
+        });
 
+        if (existingEmail) {
+            return res.status(400).json({
+                message: "Bu e-posta zaten kullanılıyor."
+            });
+        }
 
+        await prisma.user.update({
+            where: {
+                id: userId,
+            },
+            data: {
+                email: newEmail,
+            },
+        });
 
+        return res.status(200).json({
+            message: "E-posta başarıyla değiştirildi."
+        });
 
+    } catch (err) {
+        console.log(err);
 
-
-
-
-
-
-
-
-
-
-
-
-
+        return res.status(500).json({
+            message: "Sunucu hatası."
+        });
+    }
+};
 
 
 module.exports = {
     register,
     login,
     changePassword,
+    changeEmail,
 };
