@@ -827,6 +827,7 @@ body:not(.home-page) .header.scrolled {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    overflow: hidden;
 }
 
 .account-menu a,
@@ -841,12 +842,14 @@ body:not(.home-page) .header.scrolled {
     font-weight: bold;
     cursor: pointer;
     transition: .25s;
+    border: 2px solid transparent;
 }
 
 .account-menu a:hover,
 .account-menu button:hover {
     background: #464545;
     color: #800020;
+    border-radius: 0;
 }
 
 
@@ -921,6 +924,110 @@ body:not(.home-page) .header.scrolled {
     }
 }
 
+
+/*======================
+    SPLASH MESSAGE
+=======================*/
+
+.success-message {
+    margin: 15px 0;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(46, 204, 113, 0.15);
+    border: 1px solid #2ecc71;
+    color: #2ecc71;
+    font-weight: 600;
+    text-align: center;
+    animation: fadeInOut 2s ease;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    15% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.alert-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.alert-box {
+    min-width: 320px;
+    max-width: 450px;
+    padding: 18px 30px;
+    border-radius: 14px;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+    animation: fadeInOut 3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+.modal-alert{
+    position: absolute;
+    top: -68px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 320px;
+    max-width: 420px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0,0,0,.45);
+    z-index: 10001;
+    animation: alertPop 3s ease forwards;
+    pointer-events: none;
+}
+
+.modal-alert.success{
+    background: #2ecc71;
+}
+
+.modal-alert.error{
+    background: #e74c3c;
+}
+
+@keyframes alertPop{
+    0%{
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px) scale(.96);
+    }
+    12%{
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+    88%{
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+    100%{
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px) scale(.96);
+    }
+}
 
 /*================
       MODAL
@@ -2057,33 +2164,26 @@ body.light-theme .account-menu{
     background:#fff;
     border:1px solid #ddd;
     box-shadow:0 10px 25px rgba(0,0,0,.12);
+    border-radius:12px;
+    overflow:hidden;
 }
 
-body.light-theme .account-menu a{
-    display:block;
-    color:#222;
-    background:#fff;
-}
-
+body.light-theme .account-menu a,
 body.light-theme .account-menu button{
+    display:block;
     width:100%;
-    text-align:left;
-
-    color:#222;
     background:#fff;
-
-    border:none;
-    outline:none;
-
-    cursor:pointer;
+    color:#222;
+    border:2px solid transparent;
+    box-sizing:border-box;
 }
 
 body.light-theme .account-menu a:hover,
 body.light-theme .account-menu button:hover{
     background:#800020;
-    color: #f2f2f2;
-    font-weight: bold;
-    border: 2px solid #ccc;
+    color:#f2f2f2;
+    font-weight:bold;
+    border-color:#ccc;
 }
 
 body.light-theme .account-menu .theme-toggle{
