@@ -7,6 +7,7 @@ function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const navigate = useNavigate();
 
@@ -14,22 +15,35 @@ function Register() {
         e.preventDefault();
 
         if (password !== password2) {
-            alert("Şifreler eşleşmiyor.");
+            setErrorMessage("Şifreler eşleşmiyor.");
+            setPassword("");
+            setPassword2("");
             return;
         }
 
         try {
-            await axios.post("http://localhost:5000/register", {
+            await axios.post("http://localhost:5000/api/users/register", {
                 username,
                 email,
                 password,
             });
 
-            alert("Kayıt başarılı.");
             navigate("/login");
-        } catch (err) {
+
+        }  
+        
+        catch (err) {
             console.error(err);
-            alert("Kayıt başarısız.");
+
+            if (err.response?.status === 409) {
+                setErrorMessage("Bu e-posta ile zaten bir hesap var.");
+            } else {
+                setErrorMessage("Kayıt başarısız.");
+            }
+            setUsername("");
+            setEmail("");
+            setPassword("");
+            setPassword2("");
         }
     };
 
@@ -67,6 +81,12 @@ function Register() {
                 />
 
                 <button type="submit">Kayıt Ol</button>
+
+                {errorMessage && (
+                    <p className="login-error">
+                        {errorMessage}
+                    </p>
+                )}
 
                 <p>
                     Zaten hesabın var mı?{" "}

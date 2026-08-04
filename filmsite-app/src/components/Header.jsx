@@ -26,7 +26,7 @@ function Header() {
             return;
         }
 
-        fetch("http://localhost:5000/profile", {
+        fetch("http://localhost:5000/api/users/profile", {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

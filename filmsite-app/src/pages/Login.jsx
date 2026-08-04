@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -13,7 +14,7 @@ function Login() {
 
         try {
             const response = await axios.post(
-                "http://localhost:5000/login",
+                "http://localhost:5000/api/users/login",
                 {
                     email,
                     password,
@@ -23,9 +24,22 @@ function Login() {
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("username", response.data.user.username);
             
+            setErrorMessage("");
+
             navigate("/");
 
         } catch (error) {
+            if (error.response?.tatus === 404) {
+                setErrorMessage("Kullanıcı bulunamadı..");
+            } else if (error.response?.status === 401) {
+                setErrorMessage("Şifre yanlış.");
+            } else {
+                setErrorMessage("Bir hata oluştu. Lütfen tekrar deneyiniz.");
+            }
+
+            setEmail("");
+            setPassword("");
+            
             console.error(error);
         }
     };
@@ -53,6 +67,12 @@ function Login() {
                     <button type="submit">
                         Giriş Yap
                     </button>
+
+                    {errorMessage && (
+                        <p className="login-error">
+                            {errorMessage}
+                        </p>
+                    )}
 
                     <p>
                         Hesabın yok mu?{" "}

@@ -9,17 +9,32 @@ const JWT_SECRET = "film_sitesi_gizli_anahtar";
 
 const register = async (req, res) => {
     const { username, email, password } = req.body;
+
+    const existingUser = await prisma.user.findUnique({
+        where: {
+            email,
+        },
+    });
+
+    if (existingUser) {
+        return res.status(409).json({
+            message: "Bu e-posta ile zaten bir hesap var.",
+        });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     await prisma.user.create({
         data: {
             username,
             email,
-            password: hashedPassword
-        }
+            password: hashedPassword,
+        },
     });
 
-    res.send("Kullanıcı oluşturuldu.");
+    return res.status(201).json({
+        message: "Kullanıcı oluşturuldu.",
+    });
 };
 
 
