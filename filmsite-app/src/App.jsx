@@ -73,7 +73,7 @@ function App() {
           />
 
           <Route
-            path="/list"
+            path="/lists"
             element={<List />}
           />
 

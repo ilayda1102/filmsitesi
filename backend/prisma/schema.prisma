@@ -14,22 +14,51 @@ datasource db {
 
 model User {
   id         Int       @id @default(autoincrement())
-  username   String    
+  username   String    @unique
   email      String    @unique
   password   String
   createdAt  DateTime  @default(now())
 
   favorites  Favorite[]
+  lists      List[]
 }
 
 model Favorite {
-  id         Int      @id @default(autoincrement())
-  tmdbId     Int
-  mediaType  String
-  createdAt  DateTime @default(now())
+  id          Int      @id @default(autoincrement())
+  tmdbId      Int
+  mediaType   String
+  title       String
+  posterPath  String?
+  createdAt   DateTime @default(now())
 
-  userId     Int
-  user       User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      Int
+  user        User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, tmdbId])
+}
+
+model List {
+  id         Int       @id @default(autoincrement())
+  name       String
+  createdAt  DateTime  @default(now())
+
+  userId     Int
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  items      ListItem[]
+}
+
+model ListItem {
+  id          Int      @id @default(autoincrement())
+
+  tmdbId      Int
+  mediaType   String
+  title       String
+  posterPath  String?
+
+  listId      Int
+  list        List     @relation(fields: [listId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+
+  @@unique([listId, tmdbId])
 }

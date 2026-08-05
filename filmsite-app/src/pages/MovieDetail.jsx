@@ -94,7 +94,7 @@ function MovieDetail() {
 
                         {trailer && (
                             <a
-                                href={`htpps://www.youtube.com/watch?v=${trailer.key}`}
+                                href={`https://www.youtube.com/watch?v=${trailer.key}`}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="watch-trailer-btn"

@@ -155,7 +155,7 @@ function Header() {
 
                 <Link to="/series">Diziler</Link>
 
-                {user && <Link to="/list">Listem</Link>}
+                {user && <Link to="/lists">Listem</Link>}
 
                 <div className="dropdown">
                     <Link to="#" className="category-btn">

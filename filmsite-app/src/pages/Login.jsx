@@ -34,7 +34,7 @@ function Login() {
             
 
         } catch (error) {
-            if (error.response?.tatus === 404) {
+            if (error.response?.status === 404) {
                 setErrorMessage("Kullanıcı bulunamadı..");
             } else if (error.response?.status === 401) {
                 setErrorMessage("Şifre yanlış.");
