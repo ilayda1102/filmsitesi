@@ -1,8 +1,32 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
+console.log("PRISMA TEST");
+console.log("typeof prisma =", typeof prisma);
+console.log("prisma.list =", prisma.list);
+console.log("prisma.favorite =", prisma.favorite);
+console.log("prisma.user =", prisma.user);
+
+/*const createList = async (req, res) => {
+    const { name } = req.body;
+    const userId = req.user.id;
+
+    try {*/
+
 const createList = async (req, res) => {
     const { name } = req.body;
+
+    console.log("req.user =", req.user);
+    console.log("userId =", req.user.id);
+
+    const dbUser = await prisma.user.findUnique({
+        where: {
+            id: req.user.id,
+        },
+    });
+
+    console.log("dbUser =", dbUser);
+
     const userId = req.user.id;
 
     try {
@@ -24,12 +48,15 @@ const createList = async (req, res) => {
 };
 
 const getLists = async (req, res) => {
-    const userId = req.user.id;
-
     try {
+        const userId = req.user.id;
+
         const lists = await prisma.list.findMany({
             where: {
                 userId,
+            },
+            include: {
+                items: true,
             },
             orderBy: {
                 createdAt: "desc",
@@ -37,11 +64,12 @@ const getLists = async (req, res) => {
         });
 
         return res.status(200).json(lists);
+
     } catch (err) {
-        console.log(err);
+        console.error(err);
 
         return res.status(500).json({
-            message: "Listeler getirilimedi."
+            message: "Listeler getirilemedi.",
         });
     }
 };

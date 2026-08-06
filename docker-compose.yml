@@ -6,8 +6,8 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./backend:/app
-      - /app/node_modules
+      - ./backend:/APP
+      - /APP/node_modules
     command: npm run dev
 
   frontend:
