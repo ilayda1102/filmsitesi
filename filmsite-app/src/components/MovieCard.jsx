@@ -175,130 +175,128 @@ function MovieCard({ movie }) {
 
 
   return (
-  <>
-    <Link
-      to={
-        movie.media_type === "tv"
-          ? `/tv/${movie.id}`
-          : `/movie/${movie.id}`
-      }
-      className="movie-card"
-    >
-      <img
-        className="movie-poster"
-        src={
-          movie.poster_path
-            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-            : "/no-image.png"
+    <>
+      <Link
+        to={
+          movie.media_type === "tv"
+            ? `/tv/${movie.id}`
+            : `/movie/${movie.id}`
         }
-        alt={movie.title || movie.name}
-      />
-
-      <div className="movie-overlay"></div>
-
-      <button
-        className={`favorite-btn ${isInList ? "active" : ""}`}
-        onClick={openListModal}
+        className="movie-card"
       >
-        {isInList ? <HiCheck size={18} /> : <HiPlus size={18} />}
-      </button>
+        <img
+          className="movie-poster"
+          src={
+            movie.poster_path
+              ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+              : "/no-image.png"
+          }
+          alt={movie.title || movie.name}
+        />
 
-      <div className="movie-info">
-        <div className="movie-title-row">
-          <h3>{movie.title || movie.name}</h3>
+        <div className="movie-overlay"></div>
+          <div className="favorite-wrapper">
 
-          <p>
-            {(movie.release_date || movie.first_air_date)?.split("-")[0]}
-          </p>
-        </div>
+            <button
+              className={`favorite-btn ${isInList ? "active" : ""}`}
+              onClick={openListModal}
+            >
+              {isInList ? <HiCheck size={18} /> : <HiPlus size={18} />}
+            </button>
 
-        <p className="movie-meta">
-          ⭐ {movie.vote_average}
-        </p>
+            <div
+              className="save-menu"
+              style={{
+                opacity:showListModal ? 1 : 0,
+                visibility: showListModal ? "visible" : "hidden",
+                pointerEvents: showListModal ? "auto" : "none",
+              }}
+            >
 
-        <p className="movie-genre"></p>
-      </div>
-    </Link>
+                <h2>Listeye Kaydet</h2>
 
-    {showListModal && (
-      <div
-        className="profile-overlay"
-        onClick={() => setShowListModal(false)}
-      >
-        <div
-          className="profile-modal-content"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <h2>Listeye Kaydet</h2>
-
-          <div className="list-items">
-            {lists.length === 0 ? (
-              <p>Henüz oluşturulmuş bir listeniz yok.</p>
-            ) : (
-              lists.map((list) => (
-                <button
-                  key={list.id}
-                  className="list-item-btn"
-                  onClick={() => addMovieToList(list.id)}
-                >
-                  {list.name}
-                </button>
-              ))
-            )}
-          </div>
-
-          <hr />
-
-          <div className="create-list">
-            {!showCreateList ? (
-              <button
-                className="new-list-btn"
-                onClick={() => setShowCreateList(true)}
-              >
-                + Yeni Liste
-              </button>
-            ) : (
-              <>
-                <input
-                  type="text"
-                  placeholder="Liste adı"
-                  value={newListName}
-                  onChange={(e) => setNewListName(e.target.value)}
-                />
-
-                <div className="create-list-buttons">
-                  <button
-                    className="save-btn"
-                    onClick={createList}
-                  >
-                    Oluştur
-                  </button>
-
-                  <button
-                    className="cancel-btn"
-                    onClick={() => {
-                      setShowCreateList(false);
-                      setNewListName("");
-                    }}
-                  >
-                    Vazgeç
-                  </button>
+                <div className="list-items">
+                  {lists.length === 0 ? (
+                    <p>Henüz oluşturulmuş bir listeniz yok.</p>
+                  ) : (
+                    lists.map((list) => (
+                      <button
+                        key={list.id}
+                        className="list-item-btn"
+                        onClick={() => addMovieToList(list.id)}
+                      >
+                        {list.name}
+                      </button>
+                    ))
+                  )}
                 </div>
-              </>
-            )}
+
+                <hr />
+
+                <div className="create-list">
+                  {!showCreateList ? (
+                    <button
+                      className="new-list-btn"
+                      onClick={() => setShowCreateList(true)}
+                    >
+                      + Yeni Liste
+                    </button>
+                  ) : (
+                    <>
+                      <input
+                        type="text"
+                        placeholder="Liste adı"
+                        value={newListName}
+                        onChange={(e) => setNewListName(e.target.value)}
+                      />
+
+                      <div className="create-list-buttons">
+                        <button
+                          className="save-btn"
+                          onClick={createList}
+                        >
+                          Oluştur
+                        </button>
+
+                        <button
+                          className="cancel-btn"
+                          onClick={() => {
+                            setShowCreateList(false);
+                            setNewListName("");
+                          }}
+                        >
+                          Vazgeç
+                        </button>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+              
+            </div>
+
           </div>
 
-          <button
-            className="close-panel-btn"
-            onClick={() => setShowListModal(false)}
-          >
-            Kapat
-          </button>
+
+        <div className="movie-info">
+          <div className="movie-title-row">
+            <h3>{movie.title || movie.name}</h3>
+
+            <p>
+              {(movie.release_date || movie.first_air_date)?.split("-")[0]}
+            </p>
+          </div>
+
+          <p className="movie-meta">
+            ⭐ {movie.vote_average}
+          </p>
+
+          <p className="movie-genre"></p>
         </div>
-      </div>
-    )}
-  </>
-);
+
+      </Link>
+    </>
+  );
 }
 
 export default MovieCard;

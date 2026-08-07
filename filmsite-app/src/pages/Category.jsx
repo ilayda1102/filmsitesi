@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMoviesByGenre, getTVByGenre } from "../services/tmdb";
 import MovieCard from "../components/MovieCard";
-import Footer from "../components/Footer";
 
 function Category() {
     const { name } = useParams();
@@ -119,7 +118,6 @@ function Category() {
                 ))}
             </section>
 
-            <Footer />
         </>
     );
 }

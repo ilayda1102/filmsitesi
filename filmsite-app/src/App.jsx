@@ -14,20 +14,24 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import { useLocation } from "react-router-dom";
 import Logout from "./pages/Logout";
-
+import Footer from "./components/Footer";
 
 function App() {
   const location = useLocation();
   const hideHeader = location.pathname === "/lists";
-  
+
   return (
     <>
-      <Header />
+      {!hideHeader && <Header />}
       <ScrollToTop />
+
+
       <main 
         className={
             location.pathname === "/"
               ? "page-content home-content"
+              : hideHeader
+              ? "page-content no-header"
               : "page-content"
         }
       >
@@ -101,6 +105,7 @@ function App() {
 
         </Routes>
       </main>
+      <Footer/>
     </>
   );
 }

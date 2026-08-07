@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Slider from "../components/Slider";
-import Footer from "../components/Footer";
 
 import {
   getUpcomingMovies,
@@ -62,7 +61,6 @@ function Movies() {
 
       <Slider title="Animasyon" movies={animationMovies}/>
       
-      <Footer />
     </>
   );
 }

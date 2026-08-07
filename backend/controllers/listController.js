@@ -132,10 +132,36 @@ const removeMovieFromList = async (req, res) => {
     }
 };
 
+const deleteList = async (req, res) => {
+    const listId = Number(req.params.listId);
+    const userId = req.user.id;
+
+    try {
+        await prisma.list.delete({
+            where: {
+                id: listId,
+                userId,
+            },
+        });
+
+        return res.json({
+            message: "Liste silindi.",
+        });
+
+    } catch (err) {
+        console.error(err);
+
+        return res.status(500).json({
+            message: "Liste silinemedi.",
+        });
+    }
+};
+
 module.exports = {
     createList,
     getLists,
     addMovieToList,
     getListMovies,
     removeMovieFromList,
+    deleteList,
 };

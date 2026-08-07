@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Footer from "../components/Footer";
+import { HiArrowLeft, HiEllipsisVertical, HiTrash } from "react-icons/hi2";
+
 
 function List() {
     const [lists, setLists] = useState([]);
+    const navigate = useNavigate();
+    const [openMenu, setOpenMenu] = useState(null);
 
     useEffect(() => {
         const getLists = async () => {
@@ -31,21 +34,49 @@ function List() {
         getLists();
     }, []);
 
+    const deleteList = async (listId) => {
+        const token = localStorage.getItem("token");
+
+        try {
+            await axios.delete(
+                `http://localhost:5000/api/lists/${listId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            setLists((prevLists) =>
+                prevLists.filter((list) => list.id !== listId)
+            );
+
+            setOpenMenu(null);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
     return (
         <>
             <div className="list-page">
                 <div className="container">
 
-                    <h1 className="list-title">Listelerim</h1>
+                    <div className="list-page-header">
+                        <button
+                            className="back-btn"
+                            onClick={() => navigate("/")}
+                        >
+                            <HiArrowLeft size={22} />
+                        </button>
+
+                        <h1 className="list-title">Listem</h1>
+                    </div>
 
                     {lists.length === 0 ? (
                         <div className="list-empty">
                             <div>
                                 <p>Henüz hiç listeniz yok.</p>
-
-                                <Link to="/" className="discover-btn">
-                                    Keşfetmeye Başla
-                                </Link>
                             </div>
                         </div>
                     ) : (
@@ -54,9 +85,37 @@ function List() {
                                 key={list.id}
                                 className="list-row"
                             >
-                                <h2 className="list-row-title">
-                                    {list.name}
-                                </h2>
+
+                                <div className="list-row-header">
+
+                                    <h2 className="list-row-title">
+                                        {list.name}
+                                    </h2>
+
+                                    <div 
+                                        className="list-menu-wrapper"
+                                        onMouseEnter={() => setOpenMenu(list.id)}
+                                        onMouseLeave={() => setOpenMenu(null)}
+                                    >
+
+                                        <button className="list-menu-btn">
+                                            <HiEllipsisVertical size={20} />
+                                        </button>
+
+                                        {openMenu === list.id && (
+                                            <div className="list-menu">
+                                                <button
+                                                    className="delete-list-btn"
+                                                    onClick={() => deleteList(list.id)}
+                                                >
+                                                    <HiTrash size={18} />
+                                                    Listeyi Sil
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                </div>
 
                                 <div className="list-slider-wrapper">
                                     <div className="list-slider">
@@ -96,7 +155,6 @@ function List() {
                 </div>
             </div>
 
-            <Footer />
         </>
     );
 }

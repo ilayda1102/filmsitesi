@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Hero from "../components/Hero";
 import Slider from "../components/Slider";
 import MovieModal from "../components/MovieModal";
-import Footer from "../components/Footer";
 
 import {
   getUpcomingMovies,
@@ -87,7 +86,6 @@ function Home() {
       />
 
       <MovieModal />
-      <Footer />
     </>
   );
 }

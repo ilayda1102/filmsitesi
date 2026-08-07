@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Slider from "../components/Slider";
-import Footer from "../components/Footer";
 
 
 import {
@@ -92,7 +91,6 @@ function Series() {
 
       <Slider title="Animasyon Dizileri" movies={animationTV} />
 
-       <Footer />
     </>
   );
 }
