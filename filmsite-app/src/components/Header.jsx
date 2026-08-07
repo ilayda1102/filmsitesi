@@ -255,13 +255,13 @@ function Header() {
                                 Tema: {lightMode ? "Açık" : "Koyu"}
                             </button>
 
-                            <button
+                            {/*<button
                                 type="button"
                                 className="language-btn"
                                 onClick={toggleLanguage}
                             >
                                 Dil: {language === "tr" ? "Türkçe" : "English"}
-                            </button>
+                            </button>*/}
 
                             <button
                                 type="button"
@@ -300,13 +300,13 @@ function Header() {
                                     Tema: {lightMode ? "Açık" : "Koyu"}
                                 </button>
 
-                                <button
+                                {/*<button
                                     type="button"
                                     className="language-btn"
                                     onClick={toggleLanguage}
                                 >
                                     Dil: {language === "tr" ? "Türkçe" : "English"}
-                                </button>
+                                </button>*/}
 
                             </div>
                         </div>

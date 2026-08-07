@@ -1,32 +1,8 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-console.log("PRISMA TEST");
-console.log("typeof prisma =", typeof prisma);
-console.log("prisma.list =", prisma.list);
-console.log("prisma.favorite =", prisma.favorite);
-console.log("prisma.user =", prisma.user);
-
-/*const createList = async (req, res) => {
-    const { name } = req.body;
-    const userId = req.user.id;
-
-    try {*/
-
 const createList = async (req, res) => {
     const { name } = req.body;
-
-    console.log("req.user =", req.user);
-    console.log("userId =", req.user.id);
-
-    const dbUser = await prisma.user.findUnique({
-        where: {
-            id: req.user.id,
-        },
-    });
-
-    console.log("dbUser =", dbUser);
-
     const userId = req.user.id;
 
     try {
@@ -39,10 +15,10 @@ const createList = async (req, res) => {
 
         return res.status(201).json(list);
     } catch (err) {
-        console.log(err);
+        console.error(err);
 
         return res.status(500).json({
-            message: "Liste oluşturulamadı."
+            message: "Liste oluşturulamadı.",
         });
     }
 };
@@ -64,7 +40,6 @@ const getLists = async (req, res) => {
         });
 
         return res.status(200).json(lists);
-
     } catch (err) {
         console.error(err);
 
@@ -82,6 +57,7 @@ const addMovieToList = async (req, res) => {
         mediaType,
         title,
         posterPath,
+        backdropPath,
     } = req.body;
 
     try {
@@ -92,13 +68,14 @@ const addMovieToList = async (req, res) => {
                 mediaType,
                 title,
                 posterPath,
+                backdropPath,
+                backdropPath: backdropPath || posterPath,
             },
         });
 
         return res.status(201).json(movie);
-
     } catch (err) {
-        console.log(err);
+        console.error(err);
 
         return res.status(500).json({
             message: "Film listeye eklenemedi.",
@@ -121,10 +98,36 @@ const getListMovies = async (req, res) => {
 
         return res.status(200).json(movies);
     } catch (err) {
-        console.log(err);
+        console.error(err);
 
         return res.status(500).json({
             message: "Liste filmleri getirilemedi.",
+        });
+    }
+};
+
+const removeMovieFromList = async (req, res) => {
+    const listId = Number(req.params.listId);
+    const tmdbId = Number(req.params.tmdbId);
+
+    try {
+        await prisma.listItem.delete({
+            where: {
+                listId_tmdbId: {
+                    listId,
+                    tmdbId,
+                },
+            },
+        });
+
+        return res.json({
+            message: "Listeden kaldırıldı.",
+        });
+    } catch (err) {
+        console.error(err);
+
+        return res.status(500).json({
+            message: "Listeden kaldıralamadı.",
         });
     }
 };
@@ -134,4 +137,5 @@ module.exports = {
     getLists,
     addMovieToList,
     getListMovies,
+    removeMovieFromList,
 };

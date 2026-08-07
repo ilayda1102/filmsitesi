@@ -20,7 +20,9 @@ function List() {
                     }
                 );
 
+                console.log(res.data[1].items);
                 setLists(res.data);
+                
             } catch (err) {
                 console.log(err);
             }
@@ -56,28 +58,36 @@ function List() {
                                     {list.name}
                                 </h2>
 
-                                <div className="list-slider">
-                                    {list.items?.length > 0 ? (
-                                        list.items.map((movie) => (
-                                            <div
-                                                key={movie.id}
-                                                className="list-movie-card"
-                                            >
-                                                <img
-                                                    src={`https://image.tmdb.org/t/p/w500${movie.posterPath}`}
-                                                    alt={movie.title}
-                                                />
+                                <div className="list-slider-wrapper">
+                                    <div className="list-slider">
+                                        {list.items?.length > 0 ? (
+                                            list.items.map((movie) => (
+                                                <div
+                                                    key={movie.id}
+                                                    className="list-movie-card"
+                                                >
+                                                    <img
+                                                        src={
+                                                            movie.backdropPath
+                                                            ? `https://image.tmdb.org/t/p/w780${movie.backdropPath}`
+                                                            : movie.posterPath
+                                                            ? `https://image.tmdb.org/t/p/w780${movie.posterPath}`
+                                                            : "/no-image.png"
+                                                        }
+                                                        alt={movie.title}
+                                                    />
 
-                                                <p className="list-movie-title">
-                                                    {movie.title}
-                                                </p>
+                                                    <p className="list-movie-title">
+                                                        {movie.title}
+                                                    </p>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div className="list-empty-slider">
+                                                <p>Bu listede henüz film yok.</p>
                                             </div>
-                                        ))
-                                    ) : (
-                                        <div className="list-empty-slider">
-                                            <p>Bu listede henüz film yok.</p>
-                                        </div>
-                                    )}
+                                        )}
+                                    </div>
                                 </div>
                             </section>
                         ))

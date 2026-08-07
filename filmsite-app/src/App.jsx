@@ -18,6 +18,8 @@ import Logout from "./pages/Logout";
 
 function App() {
   const location = useLocation();
+  const hideHeader = location.pathname === "/lists";
+  
   return (
     <>
       <Header />

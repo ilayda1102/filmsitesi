@@ -49,16 +49,17 @@ model List {
 }
 
 model ListItem {
-  id          Int      @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
 
-  tmdbId      Int
-  mediaType   String
-  title       String
-  posterPath  String?
+  tmdbId       Int
+  mediaType    String
+  title        String
+  posterPath   String?
+  backdropPath String?
 
-  listId      Int
-  list        List     @relation(fields: [listId], references: [id], onDelete: Cascade)
-  createdAt   DateTime @default(now())
+  listId       Int
+  list         List     @relation(fields: [listId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
 
   @@unique([listId, tmdbId])
 }

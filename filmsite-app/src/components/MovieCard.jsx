@@ -8,6 +8,7 @@ function MovieCard({ movie }) {
   const [lists, setLists] = useState([]);
   const [showListModal, setShowListModal] = useState(false);
 
+  const [selectedListId, setSelectedListId] = useState(null);
   const [newListName, setNewListName] = useState("");
   const [showCreateList, setShowCreateList] = useState(false);
 
@@ -19,7 +20,7 @@ function MovieCard({ movie }) {
 
       try {
         const response = await axios.get(
-          "http://localhost:5000/lists",
+          "http://localhost:5000/api/lists",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -31,7 +32,7 @@ function MovieCard({ movie }) {
 
         for (const list of userLists) {
           const movies = await axios.get(
-            `http://localhost:5000/lists/${list.id}/items`,
+            `http://localhost:5000/api/lists/${list.id}/items`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -45,6 +46,7 @@ function MovieCard({ movie }) {
 
           if (exists) {
             setIsInList(true);
+            setSelectedListId(list.id);
             return;
           }
         }
@@ -63,7 +65,7 @@ function MovieCard({ movie }) {
 
     try {
       const response = await axios.get(
-        "http://localhost:5000/lists",
+        "http://localhost:5000/api/lists",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -82,6 +84,12 @@ function MovieCard({ movie }) {
     e.stopPropagation();
 
     await getLists();
+
+    if (isInList) {
+        await removeMovieFromList();
+        return;
+    }
+
     setShowListModal(true);
   };
 
@@ -92,7 +100,7 @@ function MovieCard({ movie }) {
 
     try {
       await axios.post(
-        "http://localhost:5000/lists",
+        "http://localhost:5000/api/lists",
         {
           name: newListName,
         },
@@ -118,11 +126,12 @@ function MovieCard({ movie }) {
 
     try {
       await axios.post(
-        `http://localhost:5000/lists/${listId}/items`,
+        `http://localhost:5000/api/lists/${listId}/items`,
         {
           tmdbId: movie.id,
           title: movie.title || movie.name,
           posterPath: movie.poster_path,
+          backdropPath: movie.backdrop_path,
           mediaType:
             movie.media_type ||
             (movie.first_air_date ? "tv" : "movie"),
@@ -136,11 +145,34 @@ function MovieCard({ movie }) {
 
       setIsInList(true);
       setShowListModal(false);
+      setSelectedListId(listId);
 
     } catch (err) {
       console.error(err);
     }
   };
+
+  const removeMovieFromList = async () => {
+    const token = localStorage.getItem("token");
+
+    try {
+        await axios.delete(
+            `http://localhost:5000/api/lists/${selectedListId}/items/${movie.id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+
+        setIsInList(false);
+        setSelectedListId(null);
+
+    } catch (err) {
+        console.error(err);
+    }
+  };
+
 
   return (
   <>
